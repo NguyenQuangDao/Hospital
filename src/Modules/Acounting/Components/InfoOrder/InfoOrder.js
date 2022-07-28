@@ -1,0 +1,120 @@
+import React from "react";
+import { FormGroup, Form, Label, Col, Row, Table, Input } from 'reactstrap'
+import './InfoOrder.scss'
+function InfoOrder() {
+    return (
+        <>
+            <Form className="Form">
+                <span class="text-success ">
+                    <i className="fa fa-list"></i>
+                    Thông tin đơn hàng
+                </span>
+                <Table hover bordered className="table-order"                >
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên dịch vụ</th>
+                            <th>Đơn giá</th>
+                            <th>Số lượng</th>
+                        </tr>
+                    </thead>
+
+                </Table>
+                <Row className="row">
+                    <Col md={4}>
+                        <FormGroup>
+                            <Label >
+                                Giá gốc
+                            </Label>
+
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <Label >
+                                0 VNĐ
+                            </Label>
+
+                        </FormGroup>
+                    </Col>
+                    <Col md={4}>
+                        <FormGroup>
+                            <Label >
+                                Tổng tiền khuyến mãi
+                            </Label>
+
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <Label >
+                                0 VNĐ
+                            </Label>
+
+                        </FormGroup>
+                    </Col>
+                    <Col md={4}>
+                        <FormGroup>
+                            <Label >
+                                Tổng số tiền thanh toán (bằng số)
+                            </Label>
+
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <Label >
+                                0 VNĐ
+                            </Label>
+
+                        </FormGroup>
+                    </Col>
+                    <Col md={4}>
+                        <FormGroup>
+                            <Label >
+                                Tổng số tiền (bằng chữ)
+                            </Label>
+
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <Input />
+
+                        </FormGroup>
+                    </Col>
+                    <Col md={4}>
+                        <FormGroup>
+                            <Label >
+                                Thời gian tạo đơn
+                            </Label>
+
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <Input />
+
+                        </FormGroup>
+                    </Col>
+                    <Col md={4}>
+                        <FormGroup>
+                            <Label >
+                                Trạng thái thanh toán
+                            </Label>
+
+                        </FormGroup>
+                    </Col>
+                    <Col md={6}>
+                        <FormGroup>
+                            <Input
+                            />
+                        </FormGroup>
+                    </Col>
+
+                </Row>
+            </Form>
+        </>
+    )
+}
+export default InfoOrder;
