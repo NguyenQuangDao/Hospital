@@ -1,0 +1,40 @@
+.contact{
+    background-color: #fff;
+    width: 44vw;
+    height: 350px;
+    .contactInformation__user {
+        padding-top: 5px;
+        border-radius: 5px;
+        .contactInformation__user span {
+            font-weight: 600;
+            color: green;
+          }
+        .contactInformation__user__col {
+            margin-top: 20px;
+                .contactInformation__user__col span {
+                    font-size: large;
+                }
+                    #icon__user {
+                        margin: 0 10px 0 10px;
+                        color: green;
+                    }
+        }
+        .contactInformation .star {
+            color: red;
+        }
+            .contactInformation__col {
+                margin: 20px 20px 0 20px;
+                    .contactInformation__row {
+                        margin-top: 10px;
+                        .countrySelect {
+                            width: 100%;
+                            height: 35px;
+                            border-radius: 5px;
+                        }
+                    }
+        }
+    }
+    
+
+}    
+
