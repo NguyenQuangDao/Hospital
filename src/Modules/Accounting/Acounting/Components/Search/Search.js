@@ -1,12 +1,12 @@
 import React from "react";
 import '../Search/Search.scss'
-import { Button } from "reactstrap";
+import { Button, Col, Form, Row } from "reactstrap";
 function Search() {
     return (
         <>
-            <div className="cointainer">
-                <div className="row">
-                    <div class="col-sm-4">
+            <Form className="form-1">
+                <Row className="row-1">
+                    <Col sm={4} className="col-1" >
                         <span class="text-success "  >
                             <i className="fa fa-book "></i>
                             Sổ thu
@@ -15,9 +15,9 @@ function Search() {
                             <option value='1'>Sổ thu ngân ca sáng</option>
                             <option value='2'>Sổ thu ngân ca chiều</option>
                         </select>
-                    </div>
-                    <div class="col-sm-4" >
-                        <span  class="text-success ">
+                    </Col>
+                    <Col sm={4} className="col-1">
+                        <span class="text-success ">
 
                             <i class="fa fa-list"></i>
 
@@ -27,8 +27,8 @@ function Search() {
                         <Button color="success" className="btn">
                             <i className="fa fa-search"></i>
                         </Button>
-                    </div>
-                    <div class="col-sm-4" >
+                    </Col>
+                    <Col sm={4} className="col-1">
                         <span class="text-success ">
 
                             <i class="fa fa-list"></i>
@@ -39,11 +39,10 @@ function Search() {
                         <Button color="success" className="btn" >
                             <i className="fa fa-search"></i>
                         </Button>
-                    </div>
-                </div>
-            </div>
-
-
+                    </Col>
+                </Row>
+            </Form>
+            
         </>
     )
 }

@@ -1,8 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AppHeader from "./Components/Header/AppHeader";
-import publicRoutes from "../Router/index";
-import Acounting from "../Modules/Acounting/Acounting";
+import Acounting from "../Modules/Accounting/Acounting/Acounting";
 import Reception from "../Modules/Reception/Reception";
 import Xray from "../Modules/X-Ray/Xray";
 import Home from "../Modules/Home/Home";

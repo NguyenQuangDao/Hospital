@@ -5,10 +5,14 @@ function InfoOrder() {
     return (
         <>
             <Form className="Form">
-                <span class="text-success ">
-                    <i className="fa fa-list"></i>
-                    Thông tin đơn hàng
-                </span>
+            <Row className="row-3">
+                    <Col className="col-3">
+                        <span class="text-success">
+                            <i className="fa fa-list"></i>
+                            Thông tin đơn hàng
+                        </span>
+                    </Col>
+                </Row>
                 <Table hover bordered className="table-order"                >
                     <thead>
                         <tr>
