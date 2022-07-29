@@ -3,10 +3,9 @@
     padding-left: 0;
 
     .appHeaderContainer {
-        width: 100%;
-        min-height: 110px;
+        min-height: 115px;
         color:#064e28;
-        background: #064e28;
+        background: rgb(10, 145, 10);
         justify-content: space-between;
         box-shadow: 0px 0px 5px #064e28;
         padding-bottom: 2px;
@@ -25,10 +24,11 @@
              }
             }
             .List-Nav{
-                display: flex;
-                margin-left: 150px;
+                display: inline-flex;
+              
+                // margin-left: 150px;
                 flex-wrap: wrap;
-                // padding: 0 6px;
+                padding: 0 6px;
                 a {
                     color: white;
                     text-transform: uppercase;
@@ -41,8 +41,9 @@
 
                 }
                 a, p {
-                    width: 110px;
-                    padding: 0px 20px;
+                    // width: 142px;
+                    padding: 16px 0px 0px 1px;
+
                     // border: 1px solid white;
                 }
 
@@ -51,8 +52,11 @@
                     color: white;
                     font-size: 14px;
                     margin-right: 1px;
+                    padding-top: 10px;
                 }
                 .pointer{
+                    width: 142px;
+                    height: 112px;
                     text-align: center;
                     margin: 0 10px;
                     border-left: 1px solid white;
@@ -60,80 +64,15 @@
                     border-radius: 10px;
                    
                     .Icon-navbar{
-                         margin: 0px 20px 0px 0px;
+                         margin: 0px 6px 0px 0px;
                     }
                 }
                 .pointer:hover {
                     cursor: pointer;
+                    background-color: #064e28;
                 }
-
-                // .icon{
-               
-                    
-                //     align-items: center;
-                    
-                // }
                 
             }
     }   
 
 }
-// .appHeaderContainer {
-//     max-height: 370px;
-//     color: $c-text;
-//     background: #064e28;
-//     justify-content: space-between;
-//     box-shadow: 0px 0px 5px ​$c-text;
-//     margin: 0px !important;
-//     .divLogo{
-//         margin: 0px 0px 0px 30px;
-//     }
-//     .logo-header{
-//         img{
-//             height: 65px;
-//             width: 100%;
-//         }
-//     }
-//     li{
-//         width: unset;
-//     }
-//     li:hover{
-//         background-color: $c-background-head-hover;
-//         a:hover{
-//             color: white;
-//         }
-//     }
-//     a {
-//         color: white;
-//         text-transform: uppercase;
-//     }
-//     .user-icon{
-//         float: right;
-//         margin-right: 20px;
-//     }
-//     .icon{
-//         display: flex;
-//         flex-direction: column;
-//         align-items: center;
-//         border-left: 1px solid white;
-//         border-right: 1px solid white;
-//         border-radius: 10px;
-//         width: 130px;
-//         margin: 0px!important;
-//     }
-//     .iconForEachRole{
-//         display: flex;
-//         flex-direction: row;
-//         align-items: center;
-//         border-left: 1px solid white;
-//         border-right: 1px solid white;
-//         border-radius: 10px;
-//         width: 230px;
-//         margin: 0px!important;
-//     }
-//     .badgeFly{
-//         position: absolute;
-//         right: 260px;
-//     }
-  
-// }
