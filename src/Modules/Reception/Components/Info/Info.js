@@ -19,19 +19,19 @@ function InfoAccounting() {
                         <Col xs='4'>
                             Mã bệnh nhân
                             <span className='star'>*</span></Col>
-                        <Col xs='8'><Input /></Col>
+                        <Col xs='8'><input /></Col>
                     </Row>
                     <Row xs='12' className='information__row'>
                         <Col xs='4'>
                             Họ Tên
                             <span className='star'>*</span></Col>
-                        <Col xs='8'><Input /></Col>
+                        <Col xs='8'><input /></Col>
                     </Row>
                     <Row xs='12' className='information__row'>
                         <Col xs='4'>
                             Ngày sinh
                             <span className='star'>*</span></Col>
-                        <Col xs='8'><Input placeholder='dd/mm/yyyy'/></Col>
+                        <Col xs='8'><input placeholder='dd/mm/yyyy'/></Col>
                     </Row>
                     <Row xs='12' className='information__row'>
                         <Col xs='4'>
@@ -48,7 +48,7 @@ function InfoAccounting() {
                         <Col xs='4'>
                             Số điện thoại
                             <span className='star'>*</span></Col>
-                        <Col xs='8'><Input /></Col>
+                        <Col xs='8'><input /></Col>
                     </Row>
                 </Col>
             </div>

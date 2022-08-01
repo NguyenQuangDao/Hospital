@@ -16,10 +16,10 @@ function SearchForm() {
 
                         <FontAwesomeIcon icon={faMagnifyingGlass} className="faMagnifyingGlass" /> <span className="patientSearch">Tìm kiếm</span>
                     </ListGroupItem>
-                    <ListGroupItem>
+                    <ListGroupItem className="patientSearch__groupItem">
 
                         <Row >
-                            <Input
+                            <input
                                 placeholder='Nhập mã bệnh nhân, số điện thoại'
                             />
                         </Row>

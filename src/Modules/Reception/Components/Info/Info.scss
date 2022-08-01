@@ -29,9 +29,16 @@
                         width: 100%;
                         height: 40px;
                         border-radius: 5px;
-                        border: 1px solid gray;
-
+                        border: 1px solid rgb(187, 187, 187);
                 }
+            }
+            .information__row input{
+                width: 100%;
+                height: 40px;
+                outline: none;
+                border-radius:5px;
+                border: 1px solid rgb(187, 187, 187);
+                padding-left: 10px;
             }
         }
 }
