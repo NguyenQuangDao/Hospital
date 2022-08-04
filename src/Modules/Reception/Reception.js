@@ -4,6 +4,8 @@ import ContactInformation from "./Components/Info/contactInformation";
 import Service from "./Components/Service/Service";
 import HandleButton from "./Components/HandleButton/HandleButton";
 import Clock from "../../Shared/Components/clock/index.jsx";
+import React, { useState, useEffect } from "react";
+
 import {
   Button,
   Table,
@@ -14,7 +16,7 @@ import {
   ListGroupItem,
   ListGroup,
 } from "reactstrap";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 function Reception() {
   // useEffect(()=>{
@@ -22,6 +24,34 @@ function Reception() {
   //    .then((response) => response.json())
   //    .then(res => console.log(res))``
   // }, [])
+  const [infoUser, setInfoUser] = useState({
+    user_id: "",
+    user_name: "",
+    user_birthday: "",
+    user_sex: false,
+    user_phone: "",
+    user_adress: "",
+    // user_provinc: dataCity,
+    // user_district: dataDistrict,
+    // user_wards: dataWards,
+    user_CMND: "",
+    user_PlateOfRegis: "",
+    user_contact: "",
+  });
+
+  const [listInfoUser, setListInfoUser] = useState([])
+  const onChangeInfoUser = (e)=>{
+    const name = e.target.name;
+    const value = e.target.value;
+    setInfoUser({...infoUser , [name] : value });
+  }
+  // console.log(infoUser);
+  const  HandleButtonSave = (e)=>{
+        setListInfoUser([...listInfoUser , infoUser])
+        // setInfoUser(" ")
+  }
+  // console.log(listInfoUser);
+  localStorage.setItem("listInfoUser", JSON.stringify(listInfoUser))
   return (
     <div
       className="App"
@@ -45,11 +75,11 @@ function Reception() {
           <InfoAccounting />
         </Col>
         <Col md={6}>
-          <ContactInformation />
+          <ContactInformation onChangeInfoUser={onChangeInfoUser} infoUser={infoUser} />
         </Col>
       </Row>
       <Service />
-      <HandleButton />
+      <HandleButton HandleButtonSave={HandleButtonSave}/>
     </div>
   );
 }
