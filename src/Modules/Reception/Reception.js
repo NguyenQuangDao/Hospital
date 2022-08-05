@@ -31,40 +31,48 @@ function Reception() {
     user_sex: false,
     user_phone: "",
     user_adress: "",
-    // user_provinc: dataCity,
-    // user_district: dataDistrict,
-    // user_wards: dataWards,
+    user_provinc: "",
+    user_district: "",
+    user_wards: "",
     user_CMND: "",
     user_PlateOfRegis: "",
     user_contact: "",
+    user_service: "",
+    user_service_object: "",
+    user_clinic: "",
+    user_reason: "",
   });
 
-  const [listInfoUser, setListInfoUser] = useState([])
-  const onChangeInfoUser = (e)=>{
+  const [listInfoUser, setListInfoUser] = useState([]);
+  const onChangeInfoUser = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setInfoUser({...infoUser , [name] : value });
-  }
+    setInfoUser({ ...infoUser, [name]: value });
+  };
   // console.log(infoUser);
-  const  HandleButtonSave = (e)=>{
-        setListInfoUser([...listInfoUser , infoUser])
-        setInfoUser({
-          user_id: "",
-          user_name: "",
-          user_birthday: "",
-          user_sex: false,
-          user_phone: "",
-          user_adress: "",
-          user_provinc: "",
-          user_district: "",
-          user_ward: "",
-          user_CMND: "",
-          user_PlateOfRegis: "",
-          user_contact: "",
-        })
-  }
+  const HandleButtonSave = (e) => {
+    setListInfoUser([...listInfoUser, infoUser]);
+    // setInfoUser({
+    //   user_id: "",
+    //   user_name: "",
+    //   user_birthday: "",
+    //   user_sex: false,
+    //   user_phone: "",
+    //   user_adress: "",
+    //   user_provinc: "",
+    //   user_district: "",
+    //   user_ward: "",
+    //   user_CMND: "",
+    //   user_PlateOfRegis: "",
+    //   user_contact: "",
+    //   user_service: "",
+    //   user_service_object: "",
+    //   user_clinic: "",
+    //   user_reason: "",
+    // });
+  };
   // console.log(listInfoUser);
-  localStorage.setItem("listInfoUser", JSON.stringify(listInfoUser))
+  localStorage.setItem("listInfoUser", JSON.stringify(listInfoUser));
   return (
     <div
       className="App"
@@ -85,14 +93,20 @@ function Reception() {
       <SearchForm />
       <Row>
         <Col md={6}>
-          <InfoAccounting onChangeInfoUser={onChangeInfoUser} infoUser={infoUser}  />
+          <InfoAccounting
+            onChangeInfoUser={onChangeInfoUser}
+            infoUser={infoUser}
+          />
         </Col>
         <Col md={6}>
-          <ContactInformation onChangeInfoUser={onChangeInfoUser} infoUser={infoUser} />
+          <ContactInformation
+            onChangeInfoUser={onChangeInfoUser}
+            infoUser={infoUser}
+          />
         </Col>
       </Row>
-      <Service />
-      <HandleButton HandleButtonSave={HandleButtonSave}/>
+      <Service onChangeInfoUser={onChangeInfoUser} infoUser={infoUser} />
+      <HandleButton HandleButtonSave={HandleButtonSave} />
     </div>
   );
 }
