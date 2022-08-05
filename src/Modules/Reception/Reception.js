@@ -48,7 +48,20 @@ function Reception() {
   // console.log(infoUser);
   const  HandleButtonSave = (e)=>{
         setListInfoUser([...listInfoUser , infoUser])
-        // setInfoUser(" ")
+        setInfoUser({
+          user_id: "",
+          user_name: "",
+          user_birthday: "",
+          user_sex: false,
+          user_phone: "",
+          user_adress: "",
+          // user_provinc: dataCity,
+          // user_district: dataDistrict,
+          // user_wards: dataWards,
+          user_CMND: "",
+          user_PlateOfRegis: "",
+          user_contact: "",
+        })
   }
   // console.log(listInfoUser);
   localStorage.setItem("listInfoUser", JSON.stringify(listInfoUser))
@@ -72,7 +85,7 @@ function Reception() {
       <SearchForm />
       <Row>
         <Col md={6}>
-          <InfoAccounting />
+          <InfoAccounting onChangeInfoUser={onChangeInfoUser} infoUser={infoUser}  />
         </Col>
         <Col md={6}>
           <ContactInformation onChangeInfoUser={onChangeInfoUser} infoUser={infoUser} />

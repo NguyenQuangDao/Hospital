@@ -18,8 +18,11 @@ function ContactInformation(props) {
   const [dataDistrict, setdataDistrict] = useState([]);
   const [codeWards, setCodeWards] = useState([]);
   const [dataWards, setdataWards] = useState([]);
-  const [data, setData] = useState([]);
-
+  const [dataCountry, setDataCountry] = useState({
+    city: "",
+    district: "",
+    wards: "",
+  });
 
 
   // console.log(infoUser);
@@ -53,9 +56,9 @@ function ContactInformation(props) {
     );
   }, [codeWards]);
   // console.log(codeWards)
-  const {onChangeInfoUser , infoUser} = props ;
+  const { onChangeInfoUser, infoUser } = props;
   return (
-    <div class="contact">
+    <div className="contact">
       <div className="contactInformation__user">
         <Col className="contactInformation__user__col">
           <FontAwesomeIcon icon={faClipboardList} id="icon__user" />
@@ -69,39 +72,38 @@ function ContactInformation(props) {
                 <span className="star">*</span>
               </Col>
               <Col xs="8">
-                <input />
+                <input
+                  name="user_adress"
+                  value={infoUser.user_adress}
+                  onChange={(e) => onChangeInfoUser(e)}
+                />
               </Col>
             </Row>
             <Row xs="12" className="contactInformation__row">
               <Col xs="4">
                 <Form>
-                  {/* Tỉnh/Thành phố
-                                    <select className="countrySelect" id='province' onChange={(e) => { setCodeDistrict(e.target.value) ; console.log(e.target.value)  }}>
-                                        <option >Chọn Tỉnh/Tp</option>
-                                        {dataCity.map((data) => {
-                                            return (
-                                                <option  key={data.code} value={data.code}>{data.name}</option>
-                                            )
-                                        })}
-                                    </select> */}
-                  <Input
-                    name="aaaa"
+                  TP / Tỉnh
+                  <select
+                    // name="aaaa"
                     type="select"
                     className="countrySelect"
                     id="province"
                     onChange={(e) => {
                       setCodeDistrict(e.target.value);
-                      console.log(e.target.name);
+                      // console.log(e.target.name);
+                      const city = document.getElementById("province");
+                      const valueCity = city.options[city.selectedIndex].text;
+                      
                     }}
                   >
                     {dataCity.map((data) => {
                       return (
-                        <option key={data.code} value={data.code} >
+                        <option key={data.code} value={data.code}>
                           {data.name}
                         </option>
                       );
                     })}
-                  </Input>
+                  </select>
                 </Form>
               </Col>
               <Col xs="4">
@@ -131,7 +133,11 @@ function ContactInformation(props) {
               <Col xs="4">
                 <Form>
                   Xã/Phường
-                  <select className="countrySelect" id="ward">
+                  <select
+                    className="countrySelect"
+                    id="ward"
+                    onChange={(e) => {}}
+                  >
                     <option value=""> Chọn Xã/Phường </option>
                     {dataWards?.map((data) => {
                       return <option key={data.code}>{data.name}</option>;
@@ -143,19 +149,31 @@ function ContactInformation(props) {
             <Row xs="12" className="contactInformation__row">
               <Col xs="4">CMT/CCCD</Col>
               <Col xs="8">
-                <input name="user_CMND" value={infoUser.user_CMND} onChange= {(e) => onChangeInfoUser(e) }/>
+                <input
+                  name="user_CMND"
+                  value={infoUser.user_CMND}
+                  onChange={(e) => onChangeInfoUser(e)}
+                />
               </Col>
             </Row>
             <Row xs="12" className="contactInformation__row">
               <Col xs="4">Nơi đăng kí</Col>
               <Col xs="8">
-                <input name="user_PlateOfRegis" value={infoUser.user_PlateOfRegis} onChange= {(e) => onChangeInfoUser(e) }/>
+                <input
+                  name="user_PlateOfRegis"
+                  value={infoUser.user_PlateOfRegis}
+                  onChange={(e) => onChangeInfoUser(e)}
+                />
               </Col>
             </Row>
             <Row xs="12" className="contactInformation__row">
               <Col xs="4">Tên người liên hệ</Col>
               <Col xs="8">
-                <input name="user_contact" value={infoUser.user_contact} onChange= {(e) => onChangeInfoUser(e) } />
+                <input
+                  name="user_contact"
+                  value={infoUser.user_contact}
+                  onChange={(e) => onChangeInfoUser(e)}
+                />
               </Col>
             </Row>
           </Col>
