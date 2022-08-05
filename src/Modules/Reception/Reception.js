@@ -24,11 +24,6 @@ function Reception() {
   //    .then((response) => response.json())
   //    .then(res => console.log(res))``
   // }, [])
-  const [dataCountry, setDataCountry] = useState({
-    city: "",
-    district: "",
-    ward: "",
-  });
   const [infoUser, setInfoUser] = useState({
     user_id: "",
     user_name: "",
@@ -36,41 +31,40 @@ function Reception() {
     user_sex: false,
     user_phone: "",
     user_adress: "",
-    user_provinc: dataCountry.city,
-    user_district: dataCountry.district,
-    user_wards: dataCountry.ward,
+    // user_provinc: dataCity,
+    // user_district: dataDistrict,
+    // user_wards: dataWards,
     user_CMND: "",
     user_PlateOfRegis: "",
     user_contact: "",
   });
-  console.log(dataCountry)
 
-  const [listInfoUser, setListInfoUser] = useState([]);
-  const onChangeInfoUser = (e) => {
+  const [listInfoUser, setListInfoUser] = useState([])
+  const onChangeInfoUser = (e)=>{
     const name = e.target.name;
     const value = e.target.value;
-    setInfoUser({ ...infoUser, [name]: value });
-  };
+    setInfoUser({...infoUser , [name] : value });
+  }
   // console.log(infoUser);
-  const HandleButtonSave = (e) => {
-    setListInfoUser([...listInfoUser, infoUser]);
-    setInfoUser({
-      user_id: "",
-      user_name: "",
-      user_birthday: "",
-      user_sex: false,
-      user_phone: "",
-      user_adress: "",
-      // user_provinc: dataCountry.city,
-      // user_district: dataCountry.district,
-      // user_wards: dataCountry.city,
-      user_CMND: "",
-      user_PlateOfRegis: "",
-      user_contact: "",
-    });
-  };
+  const  HandleButtonSave = (e)=>{
+        setListInfoUser([...listInfoUser , infoUser])
+        setInfoUser({
+          user_id: "",
+          user_name: "",
+          user_birthday: "",
+          user_sex: false,
+          user_phone: "",
+          user_adress: "",
+          user_provinc: "",
+          user_district: "",
+          user_ward: "",
+          user_CMND: "",
+          user_PlateOfRegis: "",
+          user_contact: "",
+        })
+  }
   // console.log(listInfoUser);
-  localStorage.setItem("listInfoUser", JSON.stringify(listInfoUser));
+  localStorage.setItem("listInfoUser", JSON.stringify(listInfoUser))
   return (
     <div
       className="App"
@@ -91,21 +85,14 @@ function Reception() {
       <SearchForm />
       <Row>
         <Col md={6}>
-          <InfoAccounting
-            onChangeInfoUser={onChangeInfoUser}
-            infoUser={infoUser}
-          />
+          <InfoAccounting onChangeInfoUser={onChangeInfoUser} infoUser={infoUser}  />
         </Col>
         <Col md={6}>
-          <ContactInformation
-            onChangeInfoUser={onChangeInfoUser}
-            infoUser={infoUser}
-            dataCountry={dataCountry}
-          />
+          <ContactInformation onChangeInfoUser={onChangeInfoUser} infoUser={infoUser} />
         </Col>
       </Row>
       <Service />
-      <HandleButton HandleButtonSave={HandleButtonSave} />
+      <HandleButton HandleButtonSave={HandleButtonSave}/>
     </div>
   );
 }
