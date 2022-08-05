@@ -21,10 +21,11 @@ function ContactInformation(props) {
   const [dataCountry, setDataCountry] = useState({
     city: "",
     district: "",
-    wards: "",
+    ward: "",
   });
-
-
+  console.log(dataCountry);
+  // useEffect(() => {})
+  // console.log(dataCountry.city)
   // console.log(infoUser);
   useEffect(() => {
     // Thành Phố
@@ -92,8 +93,7 @@ function ContactInformation(props) {
                       setCodeDistrict(e.target.value);
                       // console.log(e.target.name);
                       const city = document.getElementById("province");
-                      const valueCity = city.options[city.selectedIndex].text;
-                      
+                      dataCountry.city = city.options[city.selectedIndex].text;
                     }}
                   >
                     {dataCity.map((data) => {
@@ -114,6 +114,8 @@ function ContactInformation(props) {
                     id="district"
                     onChange={(e) => {
                       setCodeWards(e.target.value);
+                      const district = document.getElementById("district");
+                      dataCountry.district = district.options[district.selectedIndex].text;
                     }}
                   >
                     <option>Chọn Quận/Huyện </option>
@@ -136,7 +138,10 @@ function ContactInformation(props) {
                   <select
                     className="countrySelect"
                     id="ward"
-                    onChange={(e) => {}}
+                    onChange={(e) => {
+                      const ward = document.getElementById("ward");
+                      dataCountry.ward = ward.options[ward.selectedIndex].text;
+                    }}
                   >
                     <option value=""> Chọn Xã/Phường </option>
                     {dataWards?.map((data) => {
