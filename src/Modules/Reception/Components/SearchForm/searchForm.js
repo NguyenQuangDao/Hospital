@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
 
 
-function SearchForm() { 
-   
+function SearchForm(props) { 
+    const {handleChangeSearch} = props
+    
     return (
         <div className="patientSearch__Receptionist">
             <Col >
@@ -20,6 +21,7 @@ function SearchForm() {
 
                         <Row >
                             <input
+                                onChange={(e) => handleChangeSearch(e)}
                                 placeholder='Nhập mã bệnh nhân, số điện thoại'
                             />
                         </Row>

@@ -91,6 +91,7 @@ function ContactInformation(props) {
                       infoUser.city = city.options[city.selectedIndex].text;
                     }}
                   >
+                    <option>Chọn Tỉnh/TP</option>
                     {dataCity.map((data) => {
                       return (
                         <option key={data.code} value={data.code}>

@@ -52,25 +52,36 @@ function Reception() {
   // console.log(infoUser);
   const HandleButtonSave = (e) => {
     setListInfoUser([...listInfoUser, infoUser]);
-    // setInfoUser({
-    //   user_id: "",
-    //   user_name: "",
-    //   user_birthday: "",
-    //   user_sex: false,
-    //   user_phone: "",
-    //   user_adress: "",
-    //   user_provinc: "",
-    //   user_district: "",
-    //   user_ward: "",
-    //   user_CMND: "",
-    //   user_PlateOfRegis: "",
-    //   user_contact: "",
-    //   user_service: "",
-    //   user_service_object: "",
-    //   user_clinic: "",
-    //   user_reason: "",
-    // });
+    setInfoUser({
+      user_id: "",
+      user_name: "",
+      user_birthday: "",
+      user_sex: false,
+      user_phone: "",
+      user_adress: "",
+      user_provinc: "",
+      user_district: "",
+      user_ward: "",
+      user_CMND: "",
+      user_PlateOfRegis: "",
+      user_contact: "",
+      user_service: "",
+      user_service_object: "",
+      user_clinic: "",
+      user_reason: "",
+    });
   };
+  // search for
+    const [search, setSearch] = useState('');  
+    const handleChangeSearch = (e) => {
+        const value = e.target.value;
+        setSearch(value);
+      };
+    console.log(search);
+    useEffect(() => {
+      let resListInfoUser = listInfoUser.filter((item) => item.user_id.includes(search));
+      console.log(resListInfoUser);
+    },[search])
   // console.log(listInfoUser);
   localStorage.setItem("listInfoUser", JSON.stringify(listInfoUser));
   return (
@@ -90,7 +101,7 @@ function Reception() {
       >
         <Clock />
       </div>
-      <SearchForm />
+      <SearchForm handleChangeSearch={handleChangeSearch} />
       <Row>
         <Col md={6}>
           <InfoAccounting
