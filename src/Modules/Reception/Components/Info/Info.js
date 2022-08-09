@@ -19,7 +19,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function InfoAccounting(props) {
-  const { onChangeInfoUser, infoUser } = props;
+  const { onChangeInfoUser, infoUser  } = props;
   return (
     <div className="information__user">
       <Col className="information__user__col">

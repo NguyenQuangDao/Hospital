@@ -73,16 +73,16 @@ function Reception() {
   };
   // search for
     const [search, setSearch] = useState('');  
+    const [resListInfoUser , setResListInfoUser] = useState([]);
     const handleChangeSearch = (e) => {
         const value = e.target.value;
         setSearch(value);
       };
-    console.log(search);
+    // console.log(search);
     useEffect(() => {
-      let resListInfoUser = listInfoUser.filter((item) => item.user_id.includes(search));
-      console.log(resListInfoUser);
+      setResListInfoUser(listInfoUser.filter((item) => item.user_id.includes(search)));
     },[search])
-  // console.log(listInfoUser);
+  // console.log(resListInfoUser);
   localStorage.setItem("listInfoUser", JSON.stringify(listInfoUser));
   return (
     <div
@@ -101,12 +101,13 @@ function Reception() {
       >
         <Clock />
       </div>
-      <SearchForm handleChangeSearch={handleChangeSearch} />
+      <SearchForm handleChangeSearch={handleChangeSearch} setInfoUser={setInfoUser} resListInfoUser={resListInfoUser}/>
       <Row>
         <Col md={6}>
           <InfoAccounting
             onChangeInfoUser={onChangeInfoUser}
             infoUser={infoUser}
+            // resListInfoUser={resListInfoUser}
           />
         </Col>
         <Col md={6}>
