@@ -52,7 +52,24 @@ function Reception() {
   };
   // console.log(infoUser);
   const HandleButtonSave = (e) => {
-    
+    setInfoUser({
+      user_id: "",
+      user_name: "",
+      user_birthday: "",
+      user_sex: "",
+      user_phone: "",
+      user_adress: "",
+      user_city: "",
+      user_district: "",
+      user_ward: "",
+      user_CMND: "",
+      user_PlateOfRegis: "",
+      user_contact: "",
+      user_service: "",
+      user_service_object: "",
+      user_clinic: "",
+      user_reason: "",
+    })
     let {user_id,  
     user_name ,
     user_birthday,

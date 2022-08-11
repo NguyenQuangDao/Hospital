@@ -20,7 +20,7 @@ function InfoAccounting(props) {
                         <Col xs='4'>
                             Mã bệnh nhân
                             <span className='star'>*</span></Col>
-                        <Col xs='8'><input className="valueInput" type={"number"} name="user_id" value={infoUser.user_id} onChange={(e) => onChangeInfoUser(e)} /></Col>
+                        <Col xs='8'><input className="valueInput"  name="user_id" value={infoUser.user_id} onChange={(e) => onChangeInfoUser(e)} /></Col>
                     </Row>
                     <Row xs='12' className='information__row'>
                         <Col xs='4'>
@@ -55,7 +55,7 @@ function InfoAccounting(props) {
                         <Col xs='4'>
                             Số điện thoại
                             <span className='star'>*</span></Col>
-                        <Col xs='8'><input className="valueInput" type={"number"} name="user_phone" value={infoUser.user_phone} onChange={(e) => { onChangeInfoUser(e) }} /></Col>
+                        <Col xs='8'><input className="valueInput"  name="user_phone" value={infoUser.user_phone} onChange={(e) => { onChangeInfoUser(e) }} /></Col>
                     </Row>
                 </Col>
             </div>
