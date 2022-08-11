@@ -29,10 +29,10 @@ function Reception() {
     user_id: "",
     user_name: "",
     user_birthday: "",
-    user_sex: false,
+    user_sex: "",
     user_phone: "",
     user_adress: "",
-    user_city: "",
+    user_provinc: "",
     user_district: "",
     user_wards: "",
     user_CMND: "",
@@ -42,6 +42,9 @@ function Reception() {
     user_service_object: "",
     user_clinic: "",
     user_reason: "",
+    user_cost: "",
+    user_promotional_price: "",
+    user_promotional_service: "",
   });
 
   const [listInfoUser, setListInfoUser] = useState([]);
@@ -50,7 +53,6 @@ function Reception() {
     const value = e.target.value;
     setInfoUser({ ...infoUser, [name]: value });
   };
-  // console.log(infoUser);
   const HandleButtonSave = (e) => {
     setInfoUser({
       user_id: "",
@@ -70,40 +72,38 @@ function Reception() {
       user_clinic: "",
       user_reason: "",
     })
-    let {user_id,  
-    user_name ,
-    user_birthday,
-    user_sex,
-    user_phone,
-    user_adress,
-    user_service,
-    user_service_object,
-    user_clinic,
-    user_reason,} = infoUser
+    let { user_id,
+      user_name,
+      user_birthday,
+      user_sex,
+      user_phone,
+      user_adress,
+      user_service,
+      user_service_object,
+      user_clinic,
+      user_reason, } = infoUser
     let vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
-    if(user_phone != ""){
-      if(vnf_regex.test(user_phone) == false){
+    if (user_phone != "") {
+      if (vnf_regex.test(user_phone) == false) {
         alert('Số điện thoại của bạn không đúng định dạng!');
-      }else{
-
-        if( user_id != "" &&
-            user_name != "" &&
-            user_birthday != "" &&
-            user_sex != "" &&
-            user_phone != "" &&
-            user_adress != "" &&
-            user_service != "" &&
-            user_service_object != "" &&
-            user_clinic != "" &&
-            user_reason != ""  ){
-    
-        setListInfoUser([...listInfoUser, infoUser]);
+      } else {
+        if (user_id != "" &&
+          user_name != "" &&
+          user_birthday != "" &&
+          user_sex != "" &&
+          user_phone != "" &&
+          user_adress != "" &&
+          user_service != "" &&
+          user_service_object != "" &&
+          user_clinic != "" &&
+          user_reason != "") {
+          setListInfoUser([...listInfoUser, infoUser]);
         } else {
           return alert('vui lòng điền đầy đủ thông tin')
         }
       }
-    }else{
-       alert('Bạn chưa điền số điện thoại!');
+    } else {
+      alert('Bạn chưa điền số điện thoại!');
     }
 
   };
@@ -129,20 +129,23 @@ function Reception() {
   }
   // search for
   const [open, setOpen] = useState(true)
+  const [search, setSearch] = useState('');
+  const [resListInfoUser, setResListInfoUser] = useState([]);
+  const handleChangeSearch = (e) => {
 
-    const [search, setSearch] = useState('');  
-    console.log(search);
-    const [resListInfoUser , setResListInfoUser] = useState([]);
-    const handleChangeSearch = (e) => {
-        const value = e.target.value;
-        setSearch(value);
-        setOpen(true);
-      };
-    // console.log(search);
-    useEffect(() => {
-      setResListInfoUser(listInfoUser.filter((item) => item.user_id.includes(search)));
-    },[search])
-  // console.log(resListInfoUser);
+    if (search == " ") {
+      setOpen(false);
+    } else {
+      const value = e.target.value;
+      setSearch(value);
+      setOpen(true);
+    }
+  };
+  useEffect(() => {
+    setResListInfoUser(listInfoUser.filter((item) => item.user_id.includes(search)));
+  }, [search])
+
+
   localStorage.setItem("listInfoUser", JSON.stringify(listInfoUser));
   return (
     <div
@@ -161,13 +164,12 @@ function Reception() {
       >
         <Clock />
       </div>
-      <SearchForm setSearch={setSearch} open={open} setOpen={setOpen} handleChangeSearch={handleChangeSearch} setInfoUser={setInfoUser} resListInfoUser={resListInfoUser}/>
+      <SearchForm setSearch={setSearch} open={open} setOpen={setOpen} handleChangeSearch={handleChangeSearch} setInfoUser={setInfoUser} resListInfoUser={resListInfoUser} />
       <Row>
         <Col md={6}>
           <InfoAccounting
             onChangeInfoUser={onChangeInfoUser}
             infoUser={infoUser}
-            // resListInfoUser={resListInfoUser}
           />
         </Col>
         <Col md={6}>

@@ -25,7 +25,7 @@ function Service(props) {
         if (infoUser.user_service === "Khám nhi chuyên gia") setPriceService("200.000")
         if (infoUser.user_service === "Khám cấp cứu") setPriceService("100.000")
         if (infoUser.user_service === "Tư vấn sức khỏe") setPriceService("0")
-        if (infoUser.user_service === "Khám nội Bác sĩ BV Bạch Mai, Nội tiết...") setPriceService("120.000")
+        if (infoUser.user_service === "Khám nội Bác sĩ BV Bạch Mai, Nội tiết...") setPriceService("120.000 VNĐ")
     }, [infoUser.user_service])
 
     const [discountService, setDiscountService] = useState("")
@@ -42,9 +42,9 @@ function Service(props) {
     // số tiền cần thanh toán
     const servicePayment = priceService * discountService + ".000 VNĐ";
     const payPriceService = priceService * 0.9 + ".000 VNĐ";
-    if (servicePayment < payPriceService) { infoUser.paymentAmount = servicePayment; }
-    else { infoUser.paymentAmount = payPriceService; }
-
+    infoUser.user_promotional_price = payPriceService;
+    infoUser.user_promotional_service = servicePayment;
+    infoUser.user_cost =priceService + " " + "VNĐ"
 
     return (
         <div className="service">
@@ -122,7 +122,7 @@ function Service(props) {
 
                         <Col xs="12" className="service__price">
                             {boolean && <ul>
-                                <p>Giá gốc: {priceService} VNĐ</p>
+                                <p>Giá gốc: {priceService} VNĐ </p>
                                 <p>Giá khuyến mãi phòng khám: {payPriceService} <span style={{ fontWeight: "700", color: "black" }}>(10% giảm giá)</span></p>
                                 <p>Giá khuyến mãi đối tượng dịch vụ: {servicePayment} <span style={{ fontWeight: "700", color: "black" }}>{discountText}</span></p>
                             </ul>}

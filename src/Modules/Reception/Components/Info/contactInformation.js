@@ -145,7 +145,7 @@ function ContactInformation(props) {
               <Col xs="4">CMT/CCCD</Col>
               <Col xs="8">
                 <input
-                
+                  type={"number"}
                   name="user_CMND"
                   value={infoUser.user_CMND}
                   onChange={(e) => onChangeInfoUser(e)}

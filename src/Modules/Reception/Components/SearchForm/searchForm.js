@@ -30,7 +30,7 @@ function SearchForm(props) {
                         </Row>
                         
                     </ListGroupItem>
-                    <div className="search-form">
+                    <div className="search-form" id="search__form">
                             <ul className={open? "search-list" : "close-search"} id="searchList">
                                 {resListInfoUser.map((data) =>{
                                     return (
