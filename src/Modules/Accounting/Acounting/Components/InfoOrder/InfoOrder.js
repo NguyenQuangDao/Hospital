@@ -13,7 +13,7 @@ function InfoOrder() {
                         </span>
                     </Col>
                 </Row>
-                <Table hover bordered className="table-order"                >
+                <Table  className="table-order"                >
                     <thead>
                         <tr>
                             <th>STT</th>

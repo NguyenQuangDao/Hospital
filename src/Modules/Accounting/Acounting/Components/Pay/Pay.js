@@ -24,7 +24,7 @@ function Pay() {
                     </Col>
                     <Col sm={3} className='col'>
                         <Button color="success">
-                            THANH TOÁN
+                            THANH TOÁN 
                         </Button>
                     </Col>
                 </Row>

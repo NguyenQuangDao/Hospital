@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import '../Search/Search.scss'
 import { Button, Col, Form, Row } from "reactstrap";
 function Search(props) {
-    const {HandleInput, OnClickSearch} = props;
+    const {HandleInput, OnClickSearch,result ,setSaveData,open , setOpen} = props;
+    const handleClickItem = (data) => {
+        setSaveData(data)
+        setOpen(false)
+    }
     return (
         <>
             <Form className="form-1">
@@ -24,10 +28,21 @@ function Search(props) {
 
                             Mã bệnh nhân
                         </span>
+                        
                         <input onChange ={(e)=> HandleInput(e)} placeholder="Nhập mã bệnh nhân"></input>
                         <Button onClick={OnClickSearch} color="success" className="btn">
                             <i  className="fa fa-search"></i>
                         </Button>
+                        <div className="search-form">
+                            <ul className={open? "search-list" : "close-search"} id="searchList">
+                                {result.map((data) =>{
+                                    return (
+                                        <li className="search-item" onClick={(e) => handleClickItem(data)}>{data.user_id}</li>
+                                    )
+                                })}
+                            </ul>
+                    </div>
+                        
                     </Col>
                     <Col sm={4} className="col-1">
                         <span class="text-success ">

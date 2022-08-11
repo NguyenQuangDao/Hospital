@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { FormGroup, Form, Label, Col, Row } from 'reactstrap'
 import './InfoCustomer.scss'
 function InfoCustomer(props) {
-    // const [search, setSearch] =useState({}) 
-    const { result } = props
-    // setSearch(Object.assign({... result}))
-    // console.log(search);
-
+    
+    const { saveData } = props
+    
     return (
 
         <>
@@ -21,13 +19,10 @@ function InfoCustomer(props) {
                             <i className="fa fa-user "></i>
                             Thông tin bệnh nhân
                         </span>
-                        {result.map((p) => {
-                            return (
-                                <>
                                     <Col md={6}>
                                         <FormGroup>
                                             <Label >
-                                                Mã bệnh nhân:{p.user_id}
+                                                Mã bệnh nhân:{saveData.user_id}
 
                                             </Label>
 
@@ -36,7 +31,7 @@ function InfoCustomer(props) {
                                     <Col md={6}>
                                         <FormGroup>
                                             <Label >
-                                                Giới Tính :{p.user_sex}
+                                                Giới Tính :{saveData.user_sex}
 
                                             </Label>
 
@@ -45,7 +40,7 @@ function InfoCustomer(props) {
                                     <Col md={6}>
                                         <FormGroup>
                                             <Label >
-                                                Họ Tên :{p.user_name}
+                                                Họ Tên :{saveData.user_name}
 
                                             </Label>
 
@@ -54,7 +49,7 @@ function InfoCustomer(props) {
                                     <Col md={6}>
                                         <FormGroup>
                                             <Label >
-                                                Ngày Sinh :{p.user_birthday}
+                                                Ngày Sinh :{saveData.user_birthday}
 
                                             </Label>
 
@@ -63,16 +58,13 @@ function InfoCustomer(props) {
                                     <Col md={6}>
                                         <FormGroup>
                                             <Label>
-                                                Địa chỉ :{p.user_adress}
+                                                Địa chỉ :{saveData.user_adress}
 
                                             </Label>
 
                                         </FormGroup>
                                     </Col>
 
-                                </>
-                            )
-                        })}
 
 
                     </Row>

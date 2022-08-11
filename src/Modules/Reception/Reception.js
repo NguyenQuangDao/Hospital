@@ -32,7 +32,7 @@ function Reception() {
     user_sex: false,
     user_phone: "",
     user_adress: "",
-    user_provinc: "",
+    user_city: "",
     user_district: "",
     user_wards: "",
     user_CMND: "",
