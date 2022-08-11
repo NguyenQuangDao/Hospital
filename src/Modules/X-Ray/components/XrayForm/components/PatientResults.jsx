@@ -1,10 +1,11 @@
 import { Row, Col, Container } from 'reactstrap';
 function PatientResult() {
+    let container = JSON.parse(localStorage.getItem('finishPatient'));
     return (
         <Container>
             <Row>
                 <Col sm="12">
-                    <table style={{ height: 320, width: '100%'}}>
+                    <table style={{ width: '100%'}}>
                         <thead>
                             <tr>
                                 <th>STT</th>
@@ -13,64 +14,19 @@ function PatientResult() {
                             </tr>
                         </thead>
                         <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen ANh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen ANh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen ANh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen ANh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen ANh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen ANh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen ANh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen ANh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen ANh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen ANh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen ANh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen ANh Thang</td>
+                        {container ? (container.map((el,i)=>{
+                                return(
+                                    <tr key={i}>
+                                    <td>{i+1}</td>
+                                    <td>{el.user_id}</td>
+                                    <td>{el.user_name}</td>
+                                </tr>
+                                )
+                            })):(<tr>
+                                <td>1</td>
+                                <td>trống</td>
+                                <td>trống</td>
+                            </tr>)}
                         </tbody>
                     </table>
                 </Col>

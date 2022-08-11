@@ -91,5 +91,4 @@ export const resultServiceXray = [
             conclusion: "Hiện tại chưa thấy hình ảnh bất thường trên phim chụp xquang."
         }
     }
-
 ]

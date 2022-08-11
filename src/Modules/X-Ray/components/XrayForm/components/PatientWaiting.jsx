@@ -1,10 +1,12 @@
 import { Row, Col, Container } from 'reactstrap';
-function PatientWaiting() {
+import "../xRayForm.module.scss"
+function PatientWaiting(props) {
+    const{showLocalWaiting,onCLickHandle,onClickDelete}=props
     return (
         <Container>
             <Row>
                 <Col sm="12">
-                    <table style={{ height: 320, width: '100%'}}>
+                    <table style={{ width: '100%'}}>
                         <thead>
                             <tr>
                                 <th>STT</th>
@@ -13,44 +15,19 @@ function PatientWaiting() {
                             </tr>
                         </thead>
                         <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen anh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen anh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen anh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen anh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen anh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen anh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen anh Thang</td>
-                        </tbody>
-                        <tbody className="bodyTable">
-                            <td>1</td>
-                            <td>893475</td>
-                            <td>Nguyen anh Thang</td>
+                            {showLocalWaiting ? (showLocalWaiting.map((el,i)=>{
+                                return(
+                                    <tr onClick={()=>onCLickHandle(el,i) || onClickDelete(i)} key={i}>
+                                    <td>{i+1}</td>
+                                    <td>{el.user_id}</td>
+                                    <td>{el.user_name}</td>
+                                </tr>
+                                )
+                            })):(<tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>)}
                         </tbody>
                     </table>
                 </Col>

@@ -19,6 +19,7 @@ import {
 // import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 function Reception() {
+
   // useEffect(()=>{
   //    getCountry()
   //    .then((response) => response.json())
@@ -51,32 +52,54 @@ function Reception() {
   };
   // console.log(infoUser);
   const HandleButtonSave = (e) => {
-    setListInfoUser([...listInfoUser, infoUser]);
-    setInfoUser({
-      user_id: "",
-      user_name: "",
-      user_birthday: "",
-      user_sex: false,
-      user_phone: "",
-      user_adress: "",
-      user_provinc: "",
-      user_district: "",
-      user_ward: "",
-      user_CMND: "",
-      user_PlateOfRegis: "",
-      user_contact: "",
-      user_service: "",
-      user_service_object: "",
-      user_clinic: "",
-      user_reason: "",
-    });
+    
+    let {user_id,  
+    user_name ,
+    user_birthday,
+    user_sex,
+    user_phone,
+    user_adress,
+    user_service,
+    user_service_object,
+    user_clinic,
+    user_reason,} = infoUser
+    let vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+    if(user_phone != ""){
+      if(vnf_regex.test(user_phone) == false){
+        alert('Số điện thoại của bạn không đúng định dạng!');
+      }else{
+
+        if( user_id != "" &&
+            user_name != "" &&
+            user_birthday != "" &&
+            user_sex != "" &&
+            user_phone != "" &&
+            user_adress != "" &&
+            user_service != "" &&
+            user_service_object != "" &&
+            user_clinic != "" &&
+            user_reason != ""  ){
+    
+        setListInfoUser([...listInfoUser, infoUser]);
+        } else {
+          return alert('vui lòng điền đầy đủ thông tin')
+        }
+      }
+    }else{
+       alert('Bạn chưa điền số điện thoại!');
+    }
+
   };
   // search for
+  const [open, setOpen] = useState(true)
+
     const [search, setSearch] = useState('');  
+    console.log(search);
     const [resListInfoUser , setResListInfoUser] = useState([]);
     const handleChangeSearch = (e) => {
         const value = e.target.value;
         setSearch(value);
+        setOpen(true);
       };
     // console.log(search);
     useEffect(() => {
@@ -101,7 +124,7 @@ function Reception() {
       >
         <Clock />
       </div>
-      <SearchForm handleChangeSearch={handleChangeSearch} setInfoUser={setInfoUser} resListInfoUser={resListInfoUser}/>
+      <SearchForm setSearch={setSearch} open={open} setOpen={setOpen} handleChangeSearch={handleChangeSearch} setInfoUser={setInfoUser} resListInfoUser={resListInfoUser}/>
       <Row>
         <Col md={6}>
           <InfoAccounting

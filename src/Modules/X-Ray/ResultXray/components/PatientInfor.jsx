@@ -4,7 +4,8 @@ import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(Styles);
-function PatientInfor() {
+function PatientInfor(props) {
+    const {data}=props
     return (
         <Container>
             <Row>
@@ -18,14 +19,14 @@ function PatientInfor() {
                     </div>
                     <div className={cx('information-body')}>
                         <Row>
-                            <Col sm={6}>
-                                <span>Mã Bệnh Nhân:</span><br/>
-                                <span>Họ Tên:</span><br/>
-                                <span>Địa Chỉ:</span><br/>
+                            <Col className={cx('info')} sm={6}>
+                                <span>Mã Bệnh Nhân: {data.user_id}</span>
+                                <span>Họ Tên: {data.user_name}</span>
+                                <span>Địa Chỉ: {data.user_adress}</span>
                             </Col>
-                            <Col sm={4}>
-                                <span>Giới Tính:</span><br/>
-                                <span>Ngày Sinh:</span>
+                            <Col className={cx('info')} sm={4}>
+                                <span>Giới Tính: {data.user_sex}</span>
+                                <span>Ngày Sinh: {data.user_birthday}</span>
                             </Col>
                         </Row>
                     </div>

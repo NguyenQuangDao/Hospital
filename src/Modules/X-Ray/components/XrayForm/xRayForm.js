@@ -11,7 +11,8 @@ import PatientResult from './components/PatientResults';
 import Clock from '../../../../Shared/Components/clock/index';
 
 const cx = classNames.bind(Styles);
-function XRayForm() {
+function XRayForm(props) {
+    const {showLocal,onCLick,handleDelete}=props
     const [show, setShow] = useState('1');
     return (
         <>
@@ -25,7 +26,7 @@ function XRayForm() {
                             <FontAwesomeIcon icon={faUsers} />
                             Danh Sách Bệnh Nhân Chờ Chụp X-Quang:
                         </span>
-                        <Input size="lg" id="exampleEmail" name="email" placeholder="Lọc Theo Mã Họ Tên" />
+                        <Input bsSize="lg" id="exampleEmail" name="email" placeholder="Lọc Theo Mã Họ Tên" />
                     </Col>
                 </Row>
                 <Row className={cx('content')}>
@@ -55,7 +56,7 @@ function XRayForm() {
                         <TabPane tabId="1">
                             <Row>
                                 <Col sm="12">
-                                    <PatientWaiting />
+                                    <PatientWaiting onClickDelete={handleDelete} onCLickHandle={onCLick} showLocalWaiting={showLocal}/>
                                 </Col>
                             </Row>
                         </TabPane>
@@ -70,7 +71,7 @@ function XRayForm() {
                     <div style={{ display: 'flex',justifyContent:'center',alignItems:'center', marginTop:15}}>
                         <Col sm={9}>
                             <Form action="">
-                                <Input size="lg" id="exampleEmail" name="email" placeholder="Tìm Kiếm" />
+                                <Input bsSize="lg" id="exampleEmail" name="email" placeholder="Tìm Kiếm" />
                             </Form>
                         </Col>
                         <Col style={{marginLeft:4}}>
@@ -80,6 +81,7 @@ function XRayForm() {
                         </Col>
                     </div>
                 </Row>
+                
             </Container>
         </>
     );

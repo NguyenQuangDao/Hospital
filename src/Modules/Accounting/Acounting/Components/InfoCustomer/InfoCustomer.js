@@ -1,60 +1,86 @@
-import React from "react";
-import { FormGroup, Form, Label,Col, Row} from 'reactstrap'
+import React, { useState } from "react";
+import { FormGroup, Form, Label, Col, Row } from 'reactstrap'
 import './InfoCustomer.scss'
-function InfoCustomer() {
+function InfoCustomer(props) {
+    // const [search, setSearch] =useState({}) 
+    const { result } = props
+    // setSearch(Object.assign({... result}))
+    // console.log(search);
+
     return (
+
         <>
-            <Form className="Form-2">
+            <div>
 
-                <Row className="row-2">
-                    <span class="text-success " >
-                        <i className="fa fa-user "></i>
-                        Thông tin bệnh nhân
-                    </span>
-                    <Col md={6}>
-                        <FormGroup>
-                            <Label >
-                                Mã bệnh nhân :
-                            </Label>
 
-                        </FormGroup>
-                    </Col>
-                    <Col md={6}>
-                        <FormGroup>
-                            <Label >
-                                Giới Tính :
-                            </Label>
+                <Form className="Form-2">
 
-                        </FormGroup>
-                    </Col>
-                    <Col md={6}>
-                        <FormGroup>
-                            <Label >
-                                Họ Tên :
-                            </Label>
 
-                        </FormGroup>
-                    </Col>
-                    <Col md={6}>
-                        <FormGroup>
-                            <Label >
-                                Ngày Sinh :
-                            </Label>
+                    <Row className="row-2">
+                        <span class="text-success " >
+                            <i className="fa fa-user "></i>
+                            Thông tin bệnh nhân
+                        </span>
+                        {result.map((p) => {
+                            return (
+                                <>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label >
+                                                Mã bệnh nhân:{p.user_id}
 
-                        </FormGroup>
-                    </Col>
-                    <Col md={6}>
-                        <FormGroup>
-                            <Label>
-                                Địa chỉ :
-                            </Label>
+                                            </Label>
 
-                        </FormGroup>
-                    </Col>
-                </Row>
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label >
+                                                Giới Tính :{p.user_sex}
 
-            </Form>
+                                            </Label>
 
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label >
+                                                Họ Tên :{p.user_name}
+
+                                            </Label>
+
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label >
+                                                Ngày Sinh :{p.user_birthday}
+
+                                            </Label>
+
+                                        </FormGroup>
+                                    </Col>
+                                    <Col md={6}>
+                                        <FormGroup>
+                                            <Label>
+                                                Địa chỉ :{p.user_adress}
+
+                                            </Label>
+
+                                        </FormGroup>
+                                    </Col>
+
+                                </>
+                            )
+                        })}
+
+
+                    </Row>
+
+
+                </Form>
+
+            </div>
         </>
     )
 }

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import '../Search/Search.scss'
 import { Button, Col, Form, Row } from "reactstrap";
-function Search() {
+function Search(props) {
+    const {HandleInput, OnClickSearch} = props;
     return (
         <>
             <Form className="form-1">
@@ -23,9 +24,9 @@ function Search() {
 
                             Mã bệnh nhân
                         </span>
-                        <input placeholder="Nhập mã bệnh nhân"></input>
-                        <Button color="success" className="btn">
-                            <i className="fa fa-search"></i>
+                        <input onChange ={(e)=> HandleInput(e)} placeholder="Nhập mã bệnh nhân"></input>
+                        <Button onClick={OnClickSearch} color="success" className="btn">
+                            <i  className="fa fa-search"></i>
                         </Button>
                     </Col>
                     <Col sm={4} className="col-1">
@@ -35,7 +36,7 @@ function Search() {
 
                             Mã hóa đơn
                         </span>
-                        <input placeholder="Nhập mã hóa đơn"></input>
+                        <input  placeholder="Nhập mã hóa đơn"></input>
                         <Button color="success" className="btn" >
                             <i className="fa fa-search"></i>
                         </Button>

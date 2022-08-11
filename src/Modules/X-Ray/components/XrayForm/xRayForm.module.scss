@@ -31,9 +31,16 @@ th{
     color:#ffffff;
     text-align: center;
 }
+tr{
+    &:hover{
+        background-color: #f4f6f9;
+    }
+    cursor: pointer;
+}
 td{
     color:#000000;
     text-align: center;
+
 }
 .active{
     color:var(--text)

@@ -7,16 +7,12 @@ import { faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
 
 
 function SearchForm(props) { 
-    const {handleChangeSearch, setInfoUser,resListInfoUser} = props
-    const handleClickItem = (data) => {
+    const {open,  setSearch ,setOpen ,handleChangeSearch, setInfoUser,resListInfoUser} = props
+    const handleClickItem = (data) => {      
+        setOpen(false);
         setInfoUser(data)
-        // console.log(data);
-        console.log('aaa');
     }
-    const Luu = (params) => {
-
-    }
-    return (
+     return (
         <div className="patientSearch__Receptionist">
             <Col >
                 <ListGroup  style={{ boxShadow: '5px 5px 10px -5px rgb(0 0 0 / 12%)'}}> 
@@ -35,7 +31,7 @@ function SearchForm(props) {
                         
                     </ListGroupItem>
                     <div className="search-form">
-                            <ul className="search-list">
+                            <ul className={open? "search-list" : "close-search"} id="searchList">
                                 {resListInfoUser.map((data) =>{
                                     return (
                                         <li className="search-item" onClick={(e) => handleClickItem(data)}>{data.user_id}</li>
