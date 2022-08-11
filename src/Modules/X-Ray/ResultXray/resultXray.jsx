@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import { useState } from 'react';
 import PatientInfor from './components/PatientInfor';
 import { Row, Col, Container, Button } from 'reactstrap';
 import Styles from './resultXray.module.scss';
@@ -8,24 +8,42 @@ import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { resultServiceXray } from '../share/util';
 const cx = classNames.bind(Styles);
 function ResultXray(props) {
-    const { data, handleDelete, count,showLocal} = props;
+    const { data, count, showLocal, setdata } = props;
     const [result, setResults] = useState({
-        codeFromService: "",
-        description: "",
-        conclusion: "",
+        codeFromService: '',
+        description: '',
+        conclusion: '',
     });
-    const patient = Object.assign(data,result)
+    const patient = Object.assign(data, result);
     const [showFinish, setFinish] = useState([]);
     localStorage.setItem('finishPatient', JSON.stringify(showFinish));
-    const HandleFinish = (i) => {
-        handleDelete(i)
-        showLocal.splice(i,1)
-        setFinish([...showFinish,patient])
+    const HandleFinish = async (i) => {
+        showLocal.splice(i, 1);
+        setFinish([...showFinish, patient]);
+        setdata({
+            user_id: '',
+            user_name: '',
+            user_birthday: '',
+            user_sex: false,
+            user_phone: '',
+            user_adress: '',
+            user_provinc: '',
+            user_district: '',
+            user_ward: '',
+            user_CMND: '',
+            user_PlateOfRegis: '',
+            user_contact: '',
+        });
+        setResults({
+            codeFromService: '',
+            description: '',
+            conclusion: '',
+        });
     };
     const onChangeResults = (e) => {
         let name = e.target.name;
         let value = e.target.value;
-        setResults({...result,[name]: value });
+        setResults({ ...result, [name]: value });
     };
     const setResultFrom = () => {
         resultServiceXray.forEach((el) => {
@@ -37,11 +55,11 @@ function ResultXray(props) {
             }
         });
     };
-    const setOnchangeCode = async(ev) => {
+    const setOnchangeCode = async (ev) => {
         await setResults({
             codeFromService: ev.target.value,
-        })
-        await setResultFrom()
+        });
+        await setResultFrom();
     };
 
     return (
@@ -49,7 +67,7 @@ function ResultXray(props) {
             <Row>
                 <Col>
                     <div>
-                        <PatientInfor data={data}/>
+                        <PatientInfor data={data} />
                     </div>
                     <div className={cx('result-container')} style={{ backgroundColor: '#ffff' }}>
                         <div className={cx('result-title')}>
@@ -80,7 +98,7 @@ function ResultXray(props) {
                             rows={10}
                             name="description"
                             value={result.description}
-                            onChange={(e)=>onChangeResults(e)}
+                            onChange={(e) => onChangeResults(e)}
                         ></textarea>
                     </div>
                     <div className={cx('result-container')} style={{ backgroundColor: '#ffff' }}>
@@ -92,7 +110,7 @@ function ResultXray(props) {
                         <textarea
                             placeholder="Nhập kết luận x-quang"
                             value={result.conclusion}
-                            onChange={(e)=>onChangeResults(e)}
+                            onChange={(e) => onChangeResults(e)}
                             cols={38}
                             rows={10}
                             id="result"
@@ -103,8 +121,7 @@ function ResultXray(props) {
             </Row>
             <Row style={{ marginTop: 20, padding: 20, float: 'right' }}>
                 <Col>
-                <Button onClick={()=>HandleFinish(count)
-                        } size="lg" color="success" outline>
+                    <Button onClick={() => HandleFinish(count)} size="lg" color="success" outline>
                         Lưu
                     </Button>
                 </Col>
