@@ -9,19 +9,16 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import HandleButton from "../HandleButton/HandleButton";
 
 function ContactInformation(props) {
+  const { onChangeInfoUser, infoUser } = props;
   const [dataCity, setdataCity] = useState([]);
-  // console.log(dataCity);
   const [codeDistrict, setCodeDistrict] = useState([]);
   const [dataDistrict, setdataDistrict] = useState([]);
   const [codeWards, setCodeWards] = useState([]);
   const [dataWards, setdataWards] = useState([]);
 
-  // useEffect(() => {})
-  // console.log(dataCountry.city)
-  // console.log(infoUser);
+
   useEffect(() => {
     // Thành Phố
     axios.get("https://provinces.open-api.vn/api/?depth=1").then((response) => {
@@ -51,8 +48,7 @@ function ContactInformation(props) {
       "https://provinces.open-api.vn/api/" + "d/" + codeWards + "?depth=2"
     );
   }, [codeWards]);
-  // console.log(codeWards)
-  const { onChangeInfoUser, infoUser } = props;
+
   return (
     <div className="contact">
       <div className="contactInformation__user">
@@ -80,18 +76,16 @@ function ContactInformation(props) {
                 <Form>
                   TP / Tỉnh
                   <select
-                    // name="aaaa"
                     type="select"
                     className="countrySelect"
                     id="province"
                     onChange={(e) => {
                       setCodeDistrict(e.target.value);
-                      // console.log(e.target.name);
                       const city = document.getElementById("province");
-                      infoUser.city = city.options[city.selectedIndex].text;
+                      infoUser.user_city = city.options[city.selectedIndex].text;
                     }}
                   >
-                    <option>Chọn Tỉnh/TP</option>
+                    <option>Tỉnh/Thành phố</option>
                     {dataCity.map((data) => {
                       return (
                         <option key={data.code} value={data.code}>
@@ -111,7 +105,7 @@ function ContactInformation(props) {
                     onChange={(e) => {
                       setCodeWards(e.target.value);
                       const district = document.getElementById("district");
-                      infoUser.district = district.options[district.selectedIndex].text;
+                      infoUser.user_district = district.options[district.selectedIndex].text;
                     }}
                   >
                     <option>Chọn Quận/Huyện </option>
@@ -134,9 +128,9 @@ function ContactInformation(props) {
                   <select
                     className="countrySelect"
                     id="ward"
-                    onChange={(e) => {
+                    onChange={() => {
                       const ward = document.getElementById("ward");
-                      infoUser.ward = ward.options[ward.selectedIndex].text;
+                      infoUser.user_ward = ward.options[ward.selectedIndex].text;
                     }}
                   >
                     <option value=""> Chọn Xã/Phường </option>
@@ -151,6 +145,7 @@ function ContactInformation(props) {
               <Col xs="4">CMT/CCCD</Col>
               <Col xs="8">
                 <input
+                  type={"number"}
                   name="user_CMND"
                   value={infoUser.user_CMND}
                   onChange={(e) => onChangeInfoUser(e)}
