@@ -14,17 +14,19 @@ const cx = classNames.bind(Styles);
 function XRayForm(props) {
     const {showLocal,onCLick,handleDelete}=props
     const [show, setShow] = useState('1');
+    const [isActive1, setIsActive1] = useState(true);
+    const [isActive2, setIsActive2] = useState(false);
     const [search , setSearch] = useState('');
     const [resListShowLocal , setResListShowLocal] = useState([]);
     const ChangeInputsearch = (e) => {
         const value = e.target.value;
         setSearch(value);
     }
-    console.log(search);
+
     useEffect(() => {
         setResListShowLocal(showLocal.filter((item) => item.user_name.includes(search)));
     },[ChangeInputsearch])
-    // console.log(resListShowLocal);
+    
     return (
         <>
             <div className={cx('clock')}>
@@ -37,33 +39,41 @@ function XRayForm(props) {
                             <FontAwesomeIcon icon={faUsers} />
                             Danh Sách Bệnh Nhân Chờ Chụp X-Quang:
                         </span>
-                        <Input bsSize="lg" id="exampleEmail" name="email" placeholder="Lọc Theo Mã Họ Tên" onChange={(e) =>ChangeInputsearch(e)} />
+                        <Input bsSize="lg" id="exampleEmail" name="email" placeholder="Lọc Theo Mã Họ Tên"  />
                     </Col>
                 </Row>
                 <Row className={cx('content')}>
                     <Nav tabs>
                         <NavItem>
                             <NavLink
-                                className={cx('active')}
+                                style={{backgroundColor: isActive1 ? 'green' : ''
+                            }}
                                 onClick={function noRefCheck() {
                                     setShow('1');
+                                    setIsActive2(!isActive2)
+                                    setIsActive1(!isActive1)
                                 }}
                             >
-                                <span className={cx('list-title')}>Bệnh Nhân Chờ</span>
+                                <span style={{color:isActive1 ? 'white':''
+                            }} className={cx('list-title')}>Bệnh Nhân Chờ</span>
                             </NavLink>
                         </NavItem>
                         <NavItem>
                             <NavLink
-                                className={cx('text')}
+                                style={{backgroundColor: isActive2 ? 'green' : ''
+                            }}
                                 onClick={function noRefCheck() {
                                     setShow('2');
+                                    setIsActive1(!isActive1)
+                                    setIsActive2(!isActive2)
                                 }}
                             >
-                                <span className={cx('list-title')}>Bệnh Nhân Có Kết quả</span>
+                                <span style={{color:isActive2 ? 'white':''
+                            }} className={cx('list-title')}>Bệnh Nhân Có Kết quả</span>
                             </NavLink>
                         </NavItem>
                     </Nav>
-                    <TabContent style={{ backgroundColor: '#ffff', height: 300, overflow: 'auto' }} activeTab={show}>
+                    <TabContent style={{ backgroundColor: '#ffff', height: 300,padding:0}} activeTab={show}>
                         <TabPane tabId="1">
                             <Row>
                                 <Col sm="12">

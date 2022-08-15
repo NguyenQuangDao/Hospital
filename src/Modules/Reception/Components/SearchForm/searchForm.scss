@@ -29,7 +29,7 @@
     border: 1px solid #ccc;
     background-color: #fff;
     #searchList {
-    
+      max-height: 200px;
       overflow-y: scroll;
       .search-item {
         list-style: none;

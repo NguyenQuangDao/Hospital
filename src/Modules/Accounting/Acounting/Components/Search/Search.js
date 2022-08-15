@@ -34,7 +34,7 @@ function Search(props) {
                             <i  className="fa fa-search"></i>
                         </Button>
                         <div className="search-form">
-                            <ul className={open? "search-list" : "close-search"} id="searchList">
+                            <ul className={open? "search-list" : "close-search"} id="">
                                 {result.map((data) =>{
                                     return (
                                         <li className="search-item" onClick={(e) => handleClickItem(data)}>{data.user_id}</li>

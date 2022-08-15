@@ -4,7 +4,7 @@ function PatientWaiting(props) {
     const{showLocalWaiting,onCLickHandle,onClickDelete}=props
     return (
         <Container>
-            <Row>
+            <Row sm="12">
                 <Col sm="12">
                     <table style={{ width: '100%'}}>
                         <thead>

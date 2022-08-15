@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Row, Col, Input, Button } from "reactstrap";
 import '../Pay/Pay.scss'
-function Pay() {
+function Pay(props) {
+    const {saveData,setSaveData} = props
+    const [listData, setListData] = useState ([])
+    const   handelPay = () => {
+        setListData([...listData, saveData])
+        setSaveData({})
+    }
+
+    localStorage.setItem("HistoryPay", JSON.stringify(listData));
     return (
         <>
             <Form className="form-4">
@@ -23,7 +31,7 @@ function Pay() {
                         <Input placeholder="Điền thông tin giao dịch" />
                     </Col>
                     <Col sm={3} className='col'>
-                        <Button color="success">
+                        <Button color="success" onClick={handelPay} >
                             THANH TOÁN 
                         </Button>
                     </Col>

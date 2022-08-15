@@ -33,18 +33,30 @@ function Service(props) {
     useEffect(() => {
         if (infoUser.user_service_object === "Tứ thân phụ mẫu") { setDiscountService("0"); setDiscountText("(100% giảm giá)") }
         else if (infoUser.user_service_object === "Vip ( Miễn phí 100% )") { setDiscountService("0"); setDiscountText("(100% giảm giá)") }
-        else if (infoUser.user_service_object === "Người thân nhân viên ( Giảm 20% )") { setDiscountService("0.8"); setDiscountText("(20% giảm giá)") }
-        else if (infoUser.user_service_object === "Khám dịch vụ") { setDiscountService("0.9"); setDiscountText("(0% giảm giá)") }
+        else if (infoUser.user_service_object === "Người thân nhân viên ( Giảm 20% )") { setDiscountService("0.2"); setDiscountText("(20% giảm giá)") }
+        else if (infoUser.user_service_object === "Khám dịch vụ") { setDiscountService("0.1"); setDiscountText("(0% giảm giá)") }
         else if (infoUser.user_service_object === "Cán bộ nhân viên ( Miễn phí )") { setDiscountService("0"); setDiscountText("(100% giảm giá)") }
         else if (infoUser.user_service_object === "Không có bảo hiểm y tế") { setDiscountService("1"); setDiscountText("(0% giảm giá)") }
         else if (infoUser.user_service_object === "Bảo hiểm y tế") { setDiscountService("0"); setDiscountText("(90% giảm giá)") }
     }, [infoUser.user_service_object])
     // số tiền cần thanh toán
-    const servicePayment = priceService * discountService + ".000 VNĐ";
-    const payPriceService = priceService * 0.9 + ".000 VNĐ";
+    const ServicePayment = priceService * discountService ;
+    const PayPriceService = priceService * 0.1 ;
+    const user_TotalPromotional = ServicePayment + PayPriceService ;
+    const user_TotalSevice = priceService - user_TotalPromotional ;
+    
+    //hiện ở lễ tân
+    const servicePayment = ServicePayment+ ".000 VNĐ";
+    const payPriceService = PayPriceService + ".000 VNĐ";
+    const user_totalPromotional = user_TotalPromotional + ".000 VNĐ";
+    const user_totalSevice = user_TotalSevice + ".000 VNĐ";
+
+
     infoUser.user_promotional_price = payPriceService;
     infoUser.user_promotional_service = servicePayment;
     infoUser.user_cost =priceService + " " + "VNĐ"
+    infoUser.user_totalPromotional = user_totalPromotional
+    infoUser.user_totalSevice = user_totalSevice
 
     return (
         <div className="service">

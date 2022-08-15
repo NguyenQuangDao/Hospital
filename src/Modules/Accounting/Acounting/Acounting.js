@@ -45,8 +45,8 @@ const OnClickSearch = () => {
       </div>
       <Search setOpen={setOpen} open={open} HandleInput={HandleInput} setSaveData={setSaveData} OnClickSearch={OnClickSearch} result={result} />
       <InfoCustumer saveData={saveData} showLocal={showLocal} />
-      <InfoOrder />
-      <Pay />
+      <InfoOrder saveData= {saveData}/>
+      <Pay  saveData={saveData} setSaveData= {setSaveData}/>
 
     </div>
   );

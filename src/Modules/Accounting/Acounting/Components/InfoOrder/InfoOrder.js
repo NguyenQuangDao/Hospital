@@ -1,7 +1,8 @@
 import React from "react";
 import { FormGroup, Form, Label, Col, Row, Table, Input } from 'reactstrap'
 import './InfoOrder.scss'
-function InfoOrder() {
+function InfoOrder(props) {
+    const {saveData} = props
     return (
         <>
             <Form className="Form">
@@ -36,7 +37,7 @@ function InfoOrder() {
                     <Col md={6}>
                         <FormGroup>
                             <Label >
-                                0 VNĐ
+                            {saveData.user_cost? saveData.user_cost :' 0 VNĐ' }   
                             </Label>
 
                         </FormGroup>
@@ -44,7 +45,7 @@ function InfoOrder() {
                     <Col md={4}>
                         <FormGroup>
                             <Label >
-                                Tổng tiền khuyến mãi
+                                Tổng tiền  khuyến mãi
                             </Label>
 
                         </FormGroup>
@@ -52,7 +53,7 @@ function InfoOrder() {
                     <Col md={6}>
                         <FormGroup>
                             <Label >
-                                0 VNĐ
+                               {saveData.user_totalPromotional? saveData.user_totalPromotional :' 0 VNĐ' }  
                             </Label>
 
                         </FormGroup>
@@ -68,7 +69,7 @@ function InfoOrder() {
                     <Col md={6}>
                         <FormGroup>
                             <Label >
-                                0 VNĐ
+                               {saveData? saveData.user_totalSevice : '0 VNĐ'}
                             </Label>
 
                         </FormGroup>
