@@ -3,7 +3,7 @@ import "../xRayForm.module.scss"
 function PatientWaiting(props) {
     const{showLocalWaiting,onCLickHandle,onClickDelete}=props
     return (
-        <Container>
+        <Container style={{padding:0}}>
             <Row sm="12">
                 <Col sm="12">
                     <table style={{ width: '100%'}}>

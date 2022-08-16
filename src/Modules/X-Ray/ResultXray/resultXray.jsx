@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef} from 'react';
 import PatientInfor from './components/PatientInfor';
 import { Row, Col, Container, Button } from 'reactstrap';
 import Styles from './resultXray.module.scss';
@@ -14,10 +14,12 @@ function ResultXray(props) {
         description: '',
         conclusion: '',
     });
+    let getName = useRef()
+    getName.current = result.codeFromService
     const patient = Object.assign(data, result);
     const [showFinish, setFinish] = useState([]);
     localStorage.setItem('finishPatient', JSON.stringify(showFinish));
-    const HandleFinish = async (i) => {
+    const HandleFinish = (i) => {
         showLocal.splice(i, 1);
         setFinish([...showFinish, patient]);
         setdata({
@@ -40,14 +42,21 @@ function ResultXray(props) {
             conclusion: '',
         });
     };
+    console.log('logic');
     const onChangeResults = (e) => {
         let name = e.target.name;
         let value = e.target.value;
         setResults({ ...result, [name]: value });
     };
+    const setOnchangeCode = async (ev) => {
+        await setResults({
+            codeFromService: ev.target.value,
+        })
+        await setResultFrom()
+    };
     const setResultFrom = () => {
         resultServiceXray.forEach((el) => {
-            if (result.codeFromService === el.code) {
+            if (getName.current === el.code) {
                 setResults({
                     conclusion: el.results.conclusion,
                     description: el.results.description,
@@ -55,12 +64,7 @@ function ResultXray(props) {
             }
         });
     };
-    const setOnchangeCode = async (ev) => {
-        await setResults({
-            codeFromService: ev.target.value,
-        });
-        await setResultFrom();
-    };
+    
 
     return (
         <Container>
@@ -75,8 +79,8 @@ function ResultXray(props) {
                                 <FontAwesomeIcon icon={faPen} /> Mô tả chi tiết kết quả X-Quang
                             </span>
                             <select
-                                id="description"
-                                name="description"
+                                id="codeFromService"
+                                name="codeFromService"
                                 value={result.codeFromService}
                                 onChange={(ev) => {
                                     setOnchangeCode(ev);

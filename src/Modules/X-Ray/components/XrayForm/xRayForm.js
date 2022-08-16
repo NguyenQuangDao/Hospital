@@ -39,14 +39,14 @@ function XRayForm(props) {
                             <FontAwesomeIcon icon={faUsers} />
                             Danh Sách Bệnh Nhân Chờ Chụp X-Quang:
                         </span>
-                        <Input bsSize="lg" id="exampleEmail" name="email" placeholder="Lọc Theo Mã Họ Tên"  />
+                        <Input bsSize="lg" id="exampleEmail" name="email" placeholder="Lọc Theo Mã Họ Tên"  onChange={ChangeInputsearch}/>
                     </Col>
                 </Row>
                 <Row className={cx('content')}>
-                    <Nav tabs>
+                    <Nav style={{padding:0,display:'flex',justifyContent:'space-between'}} tabs>
                         <NavItem>
                             <NavLink
-                                style={{backgroundColor: isActive1 ? 'green' : ''
+                                style={{backgroundColor: isActive1 ? 'green' : '' ,color:isActive1 ? 'white':''
                             }}
                                 onClick={function noRefCheck() {
                                     setShow('1');
@@ -60,7 +60,7 @@ function XRayForm(props) {
                         </NavItem>
                         <NavItem>
                             <NavLink
-                                style={{backgroundColor: isActive2 ? 'green' : ''
+                                style={{backgroundColor: isActive2 ? 'green' : '',color:isActive2 ? 'white' : ''
                             }}
                                 onClick={function noRefCheck() {
                                     setShow('2');
@@ -73,7 +73,7 @@ function XRayForm(props) {
                             </NavLink>
                         </NavItem>
                     </Nav>
-                    <TabContent style={{ backgroundColor: '#ffff', height: 300,padding:0}} activeTab={show}>
+                    <TabContent style={{ backgroundColor: '#ffff', height: 300,padding:0,overflowY:'auto',overflowX:'hidden'}} activeTab={show}>
                         <TabPane tabId="1">
                             <Row>
                                 <Col sm="12">

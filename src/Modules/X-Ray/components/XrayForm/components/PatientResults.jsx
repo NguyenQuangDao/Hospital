@@ -2,7 +2,7 @@ import { Row, Col, Container } from 'reactstrap';
 function PatientResult() {
     let container = JSON.parse(localStorage.getItem('finishPatient'));
     return (
-        <Container>
+        <Container style={{padding:0}}>
             <Row>
                 <Col sm="12">
                     <table style={{ width: '100%'}}>
