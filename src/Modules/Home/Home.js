@@ -1,9 +1,7 @@
-
+import Print from "../../Shared/Components/Print/Print"
 function Home() {
     return ( <div>
-        <h1>Home page</h1>
-        <input type="" />
-        <button>submit</button>
+        <Print />
     </div> );
 }
 
