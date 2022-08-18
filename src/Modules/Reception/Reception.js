@@ -3,6 +3,7 @@ import InfoAccounting from "./Components/Info/Info";
 import ContactInformation from "./Components/Info/contactInformation";
 import Service from "./Components/Service/Service";
 import HandleButton from "./Components/HandleButton/HandleButton";
+import ModalAcc from "./Components/ModalAcc/ModalAcc"
 import Clock from "../../Shared/Components/clock/index.jsx";
 import React, { useState, useEffect } from "react";
 
@@ -15,6 +16,7 @@ import {
   Row,
   ListGroupItem,
   ListGroup,
+  Modal,
 } from "reactstrap";
 // import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -47,6 +49,7 @@ function Reception() {
     user_totalPromotional: "",
     user_totalSevice: "",
   });
+  const [modal, setModal] = useState(false);
 
   const [listInfoUser, setListInfoUser] = useState([]);
   const onChangeInfoUser = (e) => {
@@ -54,8 +57,10 @@ function Reception() {
     const value = e.target.value;
     setInfoUser({ ...infoUser, [name]: value });
   };
-  const HandleButtonSave = (e) => {
-    let {
+
+  const toggle = (e) => {
+  
+        let {
       user_id,
       user_name,
       user_birthday,
@@ -84,7 +89,7 @@ function Reception() {
           user_clinic != "" &&
           user_reason != ""
         ) {
-          setListInfoUser([...listInfoUser, infoUser]);
+          setModal(!modal)
           // setInfoUser({
           //   user_id: "",
           //   user_name: "",
@@ -110,7 +115,69 @@ function Reception() {
     } else {
       alert("Bạn chưa điền số điện thoại!");
     }
-  };
+  
+  }
+  // const HandleButtonSave = (e) => {
+  //   let {
+  //     user_id,
+  //     user_name,
+  //     user_birthday,
+  //     user_sex,
+  //     user_phone,
+  //     user_adress,
+  //     user_service,
+  //     user_service_object,
+  //     user_clinic,
+  //     user_reason,
+  //   } = infoUser;
+  //   let vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+  //   if (user_phone != "") {
+  //     if (vnf_regex.test(user_phone) == false) {
+  //       alert("Số điện thoại của bạn không đúng định dạng!");
+  //     } else {
+  //       if (
+  //         user_id != "" &&
+  //         user_name != "" &&
+  //         user_birthday != "" &&
+  //         user_sex != "" &&
+  //         user_phone != "" &&
+  //         user_adress != "" &&
+  //         user_service != "" &&
+  //         user_service_object != "" &&
+  //         user_clinic != "" &&
+  //         user_reason != ""
+  //       ) {
+  //         setListInfoUser([...listInfoUser, infoUser]);
+  //         setInfoUser({
+  //           user_id: "",
+  //           user_name: "",
+  //           user_birthday: "",
+  //           user_sex: "",
+  //           user_phone: "",
+  //           user_adress: "",
+  //           user_city: "",
+  //           user_district: "",
+  //           user_ward: "",
+  //           user_CMND: "",
+  //           user_PlateOfRegis: "",
+  //           user_contact: "",
+  //           user_service: "",
+  //           user_service_object: "",
+  //           user_clinic: "",
+  //           user_reason: "",
+  //         })
+  //       } else {
+  //         return alert("vui lòng điền đầy đủ thông tin");
+  //       }
+  //     }
+  //   } else {
+  //     alert("Bạn chưa điền số điện thoại!");
+  //   }
+  // };
+
+  
+ 
+  
   const HandleButtonClose = () => {
     setInfoUser({
       user_id: "",
@@ -189,9 +256,17 @@ function Reception() {
       </Row>
       <Service onChangeInfoUser={onChangeInfoUser} infoUser={infoUser} />
       <HandleButton
-        HandleButtonSave={HandleButtonSave}
+      toggle = {toggle}
+        // HandleButtonSave={HandleButtonSave}
         HandleButtonClose={HandleButtonClose}
+        modal = {modal} 
+        infoUser = {infoUser}
+        setInfoUser = {setInfoUser} 
+        listInfoUser = {listInfoUser} 
+        setModal = {setModal} 
+        setListInfoUser = {setListInfoUser}
       />
+      {/* < ModalAcc /> */}
     </div>
   );
 }
