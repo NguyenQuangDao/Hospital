@@ -1,4 +1,4 @@
-import { useState ,useEffect} from 'react';
+import { useState ,useLayoutEffect} from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Input, Row, Col, Container, Nav, NavItem, TabContent, NavLink, TabPane, Form, Button } from 'reactstrap';
@@ -12,23 +12,22 @@ import Clock from '../../../../Shared/Components/clock/index';
 
 const cx = classNames.bind(Styles);
 function XRayForm(props) {
-    const {showLocal,onCLick,handleDelete}=props
+    const {showLocal,onCLick,handleDelete,hide}=props
     const [show, setShow] = useState('1');
     const [isActive1, setIsActive1] = useState(true);
     const [isActive2, setIsActive2] = useState(false);
     const [search , setSearch] = useState('');
-    const [resListShowLocal , setResListShowLocal] = useState([]);
-    const ChangeInputsearch = (e) => {
-        const value = e.target.value;
-        setSearch(value);
-    }
-
-    useEffect(() => {
-        setResListShowLocal(showLocal.filter((item) => item.user_name.includes(search)));
-    },[ChangeInputsearch])
+    const [resListShowLocal , setResListShowLocal] = useState(showLocal);
+    useLayoutEffect(() => {
+        if(search)
+            setResListShowLocal(showLocal.filter((item) => item.user_name.includes(search)))
+        else if(showLocal)
+            setResListShowLocal(showLocal)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[search || showLocal])
     
     return (
-        <>
+        <div className={hide}>
             <div className={cx('clock')}>
                 <Clock />
             </div>
@@ -39,7 +38,7 @@ function XRayForm(props) {
                             <FontAwesomeIcon icon={faUsers} />
                             Danh Sách Bệnh Nhân Chờ Chụp X-Quang:
                         </span>
-                        <Input bsSize="lg" id="exampleEmail" name="email" placeholder="Lọc Theo Mã Họ Tên"  onChange={ChangeInputsearch}/>
+                        <Input bsSize="lg" placeholder="Lọc Theo Mã Họ Tên"  onChange={(e)=>setSearch(e.target.value)}/>
                     </Col>
                 </Row>
                 <Row className={cx('content')}>
@@ -92,7 +91,7 @@ function XRayForm(props) {
                     <div style={{ display: 'flex',justifyContent:'center',alignItems:'center', marginTop:15}}>
                         <Col sm={9}>
                             <Form action="">
-                                <Input bsSize="lg" id="exampleEmail" name="email" placeholder="Tìm Kiếm" />
+                                <Input bsSize="lg" onChange={(e)=>setSearch(e.target.value)} placeholder="Tìm Kiếm" />
                             </Form>
                         </Col>
                         <Col style={{marginLeft:4}}>
@@ -104,7 +103,7 @@ function XRayForm(props) {
                 </Row>
                 
             </Container>
-        </>
+        </div>
     );
 }
 

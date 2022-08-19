@@ -4,10 +4,13 @@ import Styles from './Xray.module.scss';
 import classNames from 'classnames/bind';
 import ResultXray from './ResultXray/resultXray';
 import XRayForm from './components/XrayForm/xRayForm';
+import Style from "../X-Ray/ResultXray/resultXray.module.scss"
 import { useState, useRef } from 'react';
 const cx = classNames.bind(Styles);
+const xl = classNames.bind(Style);
 function XRayRender() {
     let Local = JSON.parse(localStorage.getItem('listInfoUser'));
+    // eslint-disable-next-line no-unused-vars
     const [showLocal, setshowLocal] = useState(Local);
     const [data, setData] = useState({});
     let idItem = useRef();
@@ -24,7 +27,7 @@ function XRayRender() {
                     <ResultXray setdata={setData} count={idItem.current} showLocal={showLocal} data={data} onCLick={handleClick} />
                 </Col>
                 <Col sm={4}>
-                    <XRayForm handleDelete={deletePatient} showLocal={showLocal} onCLick={handleClick} />
+                    <XRayForm hide={xl('noPrint')} handleDelete={deletePatient} showLocal={showLocal} onCLick={handleClick} />
                 </Col>
             </Row>
         </Container>
