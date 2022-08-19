@@ -1,4 +1,5 @@
-import React, { Fragment, useRef } from 'react';
+import React, { Fragment, useRef , useEffect} from 'react';
+import Axios from 'axios';
 import { Form, Row, Col } from "reactstrap";
 import ReactToPrint from 'react-to-print';
 import "./Print.scss";
@@ -10,7 +11,8 @@ function Print(props) {
   // const{infoUser} = props
   const location = useLocation();
   const state = location.state;
-  console.log(state);
+  // console.log(state);
+  
  
   let time = new Date().toLocaleTimeString('en-US', { hour12: false });
   let today = new Date().toLocaleDateString("en-GB");

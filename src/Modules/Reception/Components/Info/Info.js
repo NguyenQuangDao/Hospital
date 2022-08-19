@@ -8,8 +8,9 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 function InfoAccounting(props) {
   const { onChangeInfoUser, infoUser, setInfoUser } = props;
   const [check, setCheck] = useState(false);
+  const [resultSlashDate, setResultSlashDate] = useState("")
   useEffect(() => {
-    if (infoUser.user_birthday.length >= 8) {
+    if (infoUser.user_birthday.length >= 10) {
       setCheck(true);
     } else {
       setCheck(false);
@@ -17,7 +18,7 @@ function InfoAccounting(props) {
   }, [infoUser.user_birthday]);
 
   // eg 22092003 -> 22/09/2003
-  const autoAddSlashDate = (rawDate) => {
+  function autoAddSlashDate(rawDate) {
     let result = rawDate;
     if (result[2] && result[2] !== "/") {
       result = result.slice(0, 2) + "/" + result.slice(2);
@@ -25,11 +26,8 @@ function InfoAccounting(props) {
     if (result[5] && result[5] !== "/") {
       result = result.slice(0, 5) + "/" + result.slice(5);
     }
-    setInfoUser({
-      user_birthday: result,
-    });
+    setResultSlashDate(result)
   };
-
   function getAge(dateString) {
     const today = new Date();
     const birthDate = toDate(dateString);
@@ -105,14 +103,13 @@ function InfoAccounting(props) {
             </Col>
             <Col xs="6">
               <input
-                data-index="3"
                 name="user_birthday"
                 className="valueInput"
                 id="birthDayValueInput"
                 pattern="^(0?[1-9]|[12][0-9]|3[01])[/](0?[1-9]|1[012])[/]\d{4}$"
-                required=""
-                placeholder="dd/mm/yyyy"
-                value={infoUser.user_birthday}
+                required
+                placeholder="dd/mm/yyyy   VD:01/01/2022"
+                value={infoUser.user_birthday = resultSlashDate}
                 maxLength="10"
                 onChange={(e) => {
                   onChangeInfoUser(e);

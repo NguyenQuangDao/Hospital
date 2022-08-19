@@ -34,7 +34,7 @@ function ResultXray(props) {
             user_sex: false,
             user_phone: '',
             user_adress: '',
-            user_provinc: '',
+            user_city: '',
             user_district: '',
             user_ward: '',
             user_CMND: '',

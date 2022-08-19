@@ -27,6 +27,13 @@ function Reception() {
   //    .then((response) => response.json())
   //    .then(res => console.log(res))``
   // }, [])
+  useEffect(() => {
+    Axios.get("http://localhost:4000/api/recep")
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch(function (error) {});
+  }, []);
   const [infoUser, setInfoUser] = useState({
     user_id: "",
     user_name: "",
@@ -34,9 +41,9 @@ function Reception() {
     user_sex: "",
     user_phone: "",
     user_adress: "",
-    user_provinc: "",
+    user_city: "",
     user_district: "",
-    user_wards: "",
+    user_ward: "",
     user_CMND: "",
     user_PlateOfRegis: "",
     user_contact: "",
@@ -100,18 +107,8 @@ function Reception() {
       alert("Bạn chưa điền số điện thoại!");
     }
   }
-      Axios.get('http://localhost:4000/api/recep')
-      .then((response) => {
-        console.log(response.data);
-      },[])
-      .catch(function (error) {});
-      useEffect(() => {
-        Axios.post('http://localhost:4000/api/recep', infoUser)
-        .then(() => {
-
-        })
-        .catch(function (error) {});
-      },[])
+      
+      
   const HandleButtonClose = () => {
     setInfoUser({
       user_id: "",
