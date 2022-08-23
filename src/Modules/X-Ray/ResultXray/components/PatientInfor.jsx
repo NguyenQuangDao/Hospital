@@ -22,7 +22,7 @@ function PatientInfor(props) {
                             <Col className={cx('info')} sm={6}>
                                 <span>Mã Bệnh Nhân: {data.user_id}</span>
                                 <span>Họ Tên: {data.user_name}</span>
-                                <span>Địa Chỉ: {data.user_adress}</span>
+                                <span>Địa Chỉ: {data ? data.user_city : ''}, {data ? data.user_district : ''}</span>
                             </Col>
                             <Col className={cx('info')} sm={4}>
                                 <span>Giới Tính: {data.user_sex}</span>

@@ -12,7 +12,7 @@ import Clock from '../../../../Shared/Components/clock/index';
 
 const cx = classNames.bind(Styles);
 function XRayForm(props) {
-    const {showLocal,onCLick,handleDelete,hide}=props
+    const {showLocal,onCLick,handleDelete,hide,finishPatient,selectResult}=props
     const [show, setShow] = useState('1');
     const [isActive1, setIsActive1] = useState(true);
     const [isActive2, setIsActive2] = useState(false);
@@ -20,7 +20,7 @@ function XRayForm(props) {
     const [resListShowLocal , setResListShowLocal] = useState(showLocal);
     useLayoutEffect(() => {
         if(search)
-            setResListShowLocal(showLocal.filter((item) => item.user_name.includes(search)))
+            setResListShowLocal(showLocal.filter((item) => item.user_id.includes(search)))
         else if(showLocal)
             setResListShowLocal(showLocal)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -42,29 +42,29 @@ function XRayForm(props) {
                     </Col>
                 </Row>
                 <Row className={cx('content')}>
-                    <Nav style={{padding:0,display:'flex',justifyContent:'space-between'}} tabs>
-                        <NavItem>
+                    <Nav style={{padding:0,display:'flex'}} tabs>
+                        <NavItem style={{width:'50%'}}>
                             <NavLink
-                                style={{backgroundColor: isActive1 ? 'green' : '' ,color:isActive1 ? 'white':''
+                                style={{display:'flex',justifyContent:'center',backgroundColor: isActive1 ? 'green' : '' ,color:isActive1 ? 'white':''
                             }}
                                 onClick={function noRefCheck() {
                                     setShow('1');
-                                    setIsActive2(!isActive2)
-                                    setIsActive1(!isActive1)
+                                    setIsActive2(false)
+                                    setIsActive1(true)
                                 }}
                             >
                                 <span style={{color:isActive1 ? 'white':''
                             }} className={cx('list-title')}>Bệnh Nhân Chờ</span>
                             </NavLink>
                         </NavItem>
-                        <NavItem>
+                        <NavItem style={{width:'50%'}}>
                             <NavLink
-                                style={{backgroundColor: isActive2 ? 'green' : '',color:isActive2 ? 'white' : ''
+                                style={{display:'flex',justifyContent:'center', backgroundColor: isActive2 ? 'green' : '',color:isActive2 ? 'white' : ''
                             }}
                                 onClick={function noRefCheck() {
                                     setShow('2');
-                                    setIsActive1(!isActive1)
-                                    setIsActive2(!isActive2)
+                                    setIsActive1(false)
+                                    setIsActive2(true)
                                 }}
                             >
                                 <span style={{color:isActive2 ? 'white':''
@@ -83,7 +83,7 @@ function XRayForm(props) {
                         <TabPane tabId="2">
                             <Row>
                                 <Col sm="12">
-                                    <PatientResult />
+                                    <PatientResult finishPatient={finishPatient} onCLickHandle={onCLick} selectResult={selectResult}/>
                                 </Col>
                             </Row>
                         </TabPane>

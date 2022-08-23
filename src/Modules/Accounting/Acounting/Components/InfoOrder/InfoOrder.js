@@ -7,7 +7,7 @@ function InfoOrder() {
             <Form className="Form">
             <Row className="row-3">
                     <Col className="col-3">
-                        <span class="text-success">
+                        <span className="text-success">
                             <i className="fa fa-list"></i>
                             Thông tin đơn hàng
                         </span>

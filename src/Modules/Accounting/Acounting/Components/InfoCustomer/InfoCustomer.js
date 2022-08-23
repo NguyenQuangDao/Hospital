@@ -15,7 +15,7 @@ function InfoCustomer(props) {
 
 
                     <Row className="row-2">
-                        <span className ="text-success " >
+                        <span className="text-success " >
                             <i className="fa fa-user "></i>
                             Thông tin bệnh nhân
                         </span>

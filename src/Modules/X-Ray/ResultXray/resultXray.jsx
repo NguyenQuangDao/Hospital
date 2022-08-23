@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useRef } from 'react';
 import PatientInfor from './components/PatientInfor';
 import { Row, Col, Container, Button } from 'reactstrap';
@@ -7,47 +8,99 @@ import { faPen, faPrint, faX } from '@fortawesome/free-solid-svg-icons';
 import { resultServiceXray } from '../share/util';
 import Print from '../printXray/printXray';
 import classNames from 'classnames/bind';
+import axios from 'axios';
 const cx = classNames.bind(Styles);
 function ResultXray(props) {
-    const { data, count, showLocal, setdata } = props;
+    const { data, count, setdata, selectPatient,showLocal,finishPatient} = props;
     const [show, setShow] = useState(false);
     const [result, setResults] = useState({
-        codeFromService: '',
-        description: '',
-        conclusion: '',
     });
     let getName = useRef();
     getName.current = result.codeFromService;
     const patient = Object.assign(data, result);
+    console.log(patient);
     const [print, setPrint] = useState({});
     const [showPrint, setShowPrint] = useState(false);
-    const [showFinish, setFinish] = useState([]);
-    localStorage.setItem('finishPatient', JSON.stringify(showFinish));
-    const HandleFinish = (i) => {
-        showLocal.splice(i, 1);
-        setFinish([...showFinish, patient]);
-        setPrint(patient);
-        setdata({
-            user_id: '',
-            user_name: '',
-            user_birthday: '',
-            user_sex: false,
-            user_phone: '',
-            user_adress: '',
-            user_city: '',
-            user_district: '',
-            user_ward: '',
-            user_CMND: '',
-            user_PlateOfRegis: '',
-            user_contact: '',
-        });
-        setResults({
-            codeFromService: '',
-            description: '',
-            conclusion: '',
-        });
-        setShow(!show);
-        setShowPrint(!showPrint);
+    
+    const HandleFinish = (i,k,showLocal,finishPatient) => {
+        //update
+        if(!!showLocal[i]===false&&!!finishPatient[k]===true){
+            axios.post(`http://localhost:4000/api/xray/${finishPatient[k]._id}`,data)
+            .then(()=>{
+                setdata({
+                    user_id: '',
+                    user_name: '',
+                    user_birthday: '',
+                    user_sex: false,
+                    user_phone: '',
+                    user_adress: '',
+                    user_provinc: '',
+                    user_district: '',
+                    user_ward: '',
+                    user_CMND: '',
+                    user_PlateOfRegis: '',
+                    user_contact: '',
+                    codeFromService: '',
+                    description: '',
+                    conclusion: '',
+                });
+                setResults({
+                    codeFromService: '',
+                    description: '',
+                    conclusion: '',
+                });
+                setShow(!show);
+                setPrint(data);
+                setShowPrint(!showPrint)
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+        }
+        //create
+        if(!!showLocal===true&&!!finishPatient[k]===false){
+            axios.post('http://localhost:4000/api/xray',patient)
+        .then(()=>{
+            setdata({
+                user_id: '',
+                user_name: '',
+                user_birthday: '',
+                user_sex: false,
+                user_phone: '',
+                user_adress: '',
+                user_provinc: '',
+                user_district: '',
+                user_ward: '',
+                user_CMND: '',
+                user_PlateOfRegis: '',
+                user_contact: '',
+                codeFromService: '',
+                description: '',
+                conclusion: '',
+            });
+            setResults({
+                codeFromService: '',
+                description: '',
+                conclusion: '',
+            });
+            setPrint(patient)
+            setShow(!show);
+            setShowPrint(!showPrint);
+            
+            //delete
+            axios.delete(`http://localhost:4000/api/recep/${showLocal ? showLocal[i].user_id:[]}`)
+            .then(()=>{
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+            showLocal.splice(i,1)
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+        }
+        
     };
     const onChangeResults = (e) => {
         let name = e.target.name;
@@ -77,7 +130,7 @@ function ResultXray(props) {
                 <Row>
                     <Col>
                         <div>
-                            <PatientInfor data={data} />
+                            <PatientInfor data={data}/>
                         </div>
                         <div className={cx('result-container')} style={{ backgroundColor: '#ffff' }}>
                             <div className={cx('result-title')}>
@@ -107,7 +160,7 @@ function ResultXray(props) {
                                 cols={38}
                                 rows={10}
                                 name="description"
-                                value={result.description}
+                                value={result.description? result.description: data.description}
                                 onChange={(e) => onChangeResults(e)}
                             ></textarea>
                         </div>
@@ -119,7 +172,7 @@ function ResultXray(props) {
                             </div>
                             <textarea
                                 placeholder="Nhập kết luận x-quang"
-                                value={result.conclusion}
+                                value={result.conclusion ? result.conclusion : data.conclusion}
                                 onChange={(e) => onChangeResults(e)}
                                 cols={38}
                                 rows={10}
@@ -132,7 +185,7 @@ function ResultXray(props) {
                 <Row style={{ marginTop: 20, padding: 20, float: 'right' }}>
                     <Col>
                         {show && (
-                            <Button onClick={() => HandleFinish(count)} size="lg" color="success" outline>
+                            <Button onClick={() => HandleFinish(count,selectPatient,showLocal,finishPatient)} size="lg" color="success" outline>
                                 Lưu
                             </Button>
                         )}
@@ -143,7 +196,7 @@ function ResultXray(props) {
                 <div className={cx('modal')}>
                     <div className={cx('modal__overlay')}>
                     <div className={cx('tool')}>
-                        <FontAwesomeIcon className={cx('x')} onClick={()=>setShowPrint(false)} icon={faX}/>
+                        <FontAwesomeIcon className={cx('x')} onClick={()=>setShowPrint(false) || window.location.reload()} icon={faX}/>
                             <Print patient={print} />
                         <FontAwesomeIcon className={cx('x')} onClick={()=>{window.print()}} icon={faPrint}/>
                     </div>

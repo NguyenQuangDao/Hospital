@@ -3,7 +3,14 @@ import { FormGroup, Form, Label, Col, Row, Table, Input } from 'reactstrap'
 import './InfoOrderAcc.scss'
 function InfoOrder(props) {
     const {infoUser} = props 
-    
+    let time = new Date().toLocaleTimeString("en-US", { hour12: false });
+    let today = new Date().toLocaleDateString("en-GB");
+    const [Ctime, setCtime] = React.useState(time);
+    const [date, setDate] = React.useState(today);
+    const updateTime = () => {
+      time = new Date().toLocaleTimeString("en-US", { hour12: false });
+      setCtime(time);
+    };
     return (
         <>
             <Form className="Form">
@@ -99,7 +106,8 @@ function InfoOrder(props) {
                     </Col>
                     <Col md={6}>
                         <FormGroup>
-                            <Input />
+                        {Ctime} Ngày {date}
+
 
                         </FormGroup>
                     </Col>

@@ -7,7 +7,7 @@ function Pay() {
             <Form className="form-4">
                 <Row>
                     <Col sm={3} className='col'>
-                        <span class="text-success ">
+                        <span className="text-success ">
                             <i className="fa fa-dollar"></i>
                             Thanh toán hóa đơn
                         </span>

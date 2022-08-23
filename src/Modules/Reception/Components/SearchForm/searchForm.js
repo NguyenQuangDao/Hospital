@@ -22,10 +22,13 @@ function SearchForm(props) {
     setInfoUser,
     resListInfoUser,
     search,
+    setIsChecked,
+    isChecked
   } = props;
   const handleClickItem = (data) => {
     setOpen(false);
     setInfoUser(data);
+    setIsChecked(!isChecked)
   };
 
   useLayoutEffect(() => {
@@ -60,9 +63,10 @@ function SearchForm(props) {
               className={open ? "search-list" : "close-search"}
               id="searchList"
             >
-              {resListInfoUser.map((data) => {
+              {resListInfoUser.map((data,i) =>{
                 return (
-                  <li
+                  <li 
+                  key={i}
                     className="search-item"
                     onClick={(e) => handleClickItem(data)}
                   >

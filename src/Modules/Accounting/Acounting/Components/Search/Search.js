@@ -12,7 +12,7 @@ function Search(props) {
             <Form className="form-1">
                 <Row className="row-1">
                     <Col sm={4} className="col-1" >
-                        <span class="text-success "  >
+                        <span className="text-success "  >
                             <i className="fa fa-book "></i>
                             Sổ thu
                         </span>
@@ -22,14 +22,14 @@ function Search(props) {
                         </select>
                     </Col>
                     <Col sm={4} className="col-1">
-                        <span class="text-success ">
+                        <span className="text-success ">
 
-                            <i class="fa fa-list"></i>
+                            <i className="fa fa-list"></i>
 
                             Mã bệnh nhân
                         </span>
                         
-                        <input onChange ={(e)=> HandleInput(e)} placeholder="Nhập mã bệnh nhân"></input>
+                        <input id="searchInput" onChange ={(e)=> HandleInput(e)} placeholder="Nhập mã bệnh nhân"></input>
                         <Button onClick={OnClickSearch} color="success" className="btn">
                             <i  className="fa fa-search"></i>
                         </Button>
@@ -45,9 +45,9 @@ function Search(props) {
                         
                     </Col>
                     <Col sm={4} className="col-1">
-                        <span class="text-success ">
+                        <span className="text-success ">
 
-                            <i class="fa fa-list"></i>
+                            <i className="fa fa-list"></i>
 
                             Mã hóa đơn
                         </span>

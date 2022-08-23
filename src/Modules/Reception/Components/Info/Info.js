@@ -59,7 +59,7 @@ function InfoAccounting(props) {
     const time_format = array[0].length > 2 ? array : array.reverse();
     return new Date(time_format[0], time_format[1] - 1, time_format[2]);
   }
-
+// infoUser.user_birthday = resultSlashDate;
   return (
     <div className="information__user">
       <Col className="information__user__col">
@@ -109,7 +109,7 @@ function InfoAccounting(props) {
                 pattern="^(0?[1-9]|[12][0-9]|3[01])[/](0?[1-9]|1[012])[/]\d{4}$"
                 required
                 placeholder="dd/mm/yyyy   VD:01/01/2022"
-                value={infoUser.user_birthday = resultSlashDate}
+                value={infoUser.user_birthday}
                 maxLength="10"
                 onChange={(e) => {
                   onChangeInfoUser(e);

@@ -1,36 +1,54 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row, Col, Container } from 'reactstrap';
+import axios from 'axios';
+import { Row, Col} from 'reactstrap';
 import Styles from './Xray.module.scss';
 import classNames from 'classnames/bind';
 import ResultXray from './ResultXray/resultXray';
 import XRayForm from './components/XrayForm/xRayForm';
-import Style from "../X-Ray/ResultXray/resultXray.module.scss"
 import { useState, useRef } from 'react';
+import { useEffect } from 'react';
 const cx = classNames.bind(Styles);
-const xl = classNames.bind(Style);
 function XRayRender() {
-    let Local = JSON.parse(localStorage.getItem('listInfoUser'));
     // eslint-disable-next-line no-unused-vars
-    const [showLocal, setshowLocal] = useState(Local);
+    const [showLocal, setshowLocal] = useState([]);
     const [data, setData] = useState({});
+    useEffect(()=>{
+        axios.get('http://localhost:4000/api/recep')
+    .then((res)=>{
+        setshowLocal(res.data)
+    })
+    },[])
+    const [finishPatient,setFinishPatient]= useState([])
+    useEffect(()=>{
+        axios.get('http://localhost:4000/api/xray')
+        .then((res)=>{
+            setFinishPatient(res.data)
+        })
+    },[])
     let idItem = useRef();
+    let patientResult = useRef();
     const deletePatient = (i) => {
+        console.log(i);
         idItem.current = i;
+    };
+    const selectResult = (k) => {
+        console.log(k)
+        patientResult.current = k;
     };
     const handleClick = (data) => {
         setData(data);
     };
     return (
-        <Container className={cx('wrapper')}>
+        <div className={cx('wrapper')}>
             <Row>
                 <Col sm={8}>
-                    <ResultXray setdata={setData} count={idItem.current} showLocal={showLocal} data={data} onCLick={handleClick} />
+                    <ResultXray finishPatient={finishPatient} selectPatient={patientResult.current} setdata={setData} setshowLocal={setshowLocal} count={idItem.current} showLocal={showLocal} data={data} onCLick={handleClick} />
                 </Col>
                 <Col sm={4}>
-                    <XRayForm hide={xl('noPrint')} handleDelete={deletePatient} showLocal={showLocal} onCLick={handleClick} />
+                    <XRayForm finishPatient={finishPatient} selectResult={selectResult} handleDelete={deletePatient} showLocal={showLocal} onCLick={handleClick} />
                 </Col>
             </Row>
-        </Container>
+        </div>
     );
 }
 export default XRayRender;

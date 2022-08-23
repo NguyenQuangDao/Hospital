@@ -14,7 +14,6 @@ function Print({patient}) {
         setCtime(Ctime)
     }
     setInterval(updateTime, 1000);
-    console.log(time);
     return (
         <div className={cx('print')}>
             <div className={cx('print-form')}>

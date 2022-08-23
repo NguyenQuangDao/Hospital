@@ -6,11 +6,11 @@
     padding: 15px;
     height: 500px;
     border-radius: 14px;
-
     .list-title{
         color: var(--text);
         font-weight: 600;
         cursor: pointer;
+        user-select: none;
     }
     .content{
         margin-top: 15px;
@@ -24,19 +24,22 @@
     }
 }
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid rgb(182, 182, 182);
     border-collapse: collapse;
+    user-select: none;
 }
 th{
     background-color: green;
     color:#ffffff;
     text-align: center;
 }
-tr{
-    &:hover{
-        background-color: #f4f6f9;
+.Presult{
+    tr{
+        &:hover{
+            background-color: #f4f6f9;
+        }
+        cursor: pointer;
     }
-    cursor: pointer;
 }
 td{
     color:#000000;

@@ -1,31 +1,34 @@
 import { Row, Col, Container } from 'reactstrap';
-function PatientResult() {
-    let container = JSON.parse(localStorage.getItem('finishPatient'));
+import { memo } from 'react';
+import classNames from 'classnames/bind';
+import Styles from '../xRayForm.module.scss';
+const cx = classNames.bind(Styles);
+function PatientResult({selectResult,onCLickHandle,finishPatient}) {
     return (
         <Container style={{padding:0}}>
             <Row>
                 <Col sm="12">
                     <table style={{ width: '100%'}}>
                         <thead>
-                            <tr>
+                            <tr className={cx('Presult')}>
                                 <th>STT</th>
                                 <th>Mã bệnh nhân</th>
                                 <th>Bệnh nhân</th>
                             </tr>
                         </thead>
-                        <tbody className="bodyTable">
-                        {container ? (container.map((el,i)=>{
+                        <tbody className={cx('Presult')}>
+                        {finishPatient ? (finishPatient.map((el,i)=>{
                                 return(
-                                    <tr key={i}>
+                                    <tr onClick={()=>onCLickHandle(el,i) || selectResult(i)} key={i}>
                                     <td>{i+1}</td>
                                     <td>{el.user_id}</td>
                                     <td>{el.user_name}</td>
                                 </tr>
                                 )
                             })):(<tr>
-                                <td>1</td>
-                                <td>trống</td>
-                                <td>trống</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                             </tr>)}
                         </tbody>
                     </table>
@@ -35,4 +38,4 @@ function PatientResult() {
     );
 }
 
-export default PatientResult;
+export default memo(PatientResult);

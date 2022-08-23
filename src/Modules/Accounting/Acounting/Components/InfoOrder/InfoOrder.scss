@@ -30,6 +30,12 @@
         margin-left: 40px;
         text-align: center;
         color: white;
+        tr {
+            &:hover {
+                background-color: none;
+            }
+        
+        }
     }
 
     .row {
