@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Row } from "reactstrap";
 import "./Info.scss";
@@ -9,16 +9,17 @@ function InfoAccounting(props) {
   const { onChangeInfoUser, infoUser, setInfoUser } = props;
   const [check, setCheck] = useState(false);
   const [resultSlashDate, setResultSlashDate] = useState("")
+  
   useEffect(() => {
-    if (infoUser.user_birthday.length >= 10) {
+    if (infoUser.user_birthday.length == 10) {
       setCheck(true);
     } else {
       setCheck(false);
     }
   }, [infoUser.user_birthday]);
-
+  
   // eg 22092003 -> 22/09/2003
-  function autoAddSlashDate(rawDate) {
+  const autoAddSlashDate = (rawDate) => {
     let result = rawDate;
     if (result[2] && result[2] !== "/") {
       result = result.slice(0, 2) + "/" + result.slice(2);
@@ -28,6 +29,8 @@ function InfoAccounting(props) {
     }
     setResultSlashDate(result)
   };
+
+  // calculate age
   function getAge(dateString) {
     const today = new Date();
     const birthDate = toDate(dateString);
@@ -59,7 +62,6 @@ function InfoAccounting(props) {
     const time_format = array[0].length > 2 ? array : array.reverse();
     return new Date(time_format[0], time_format[1] - 1, time_format[2]);
   }
-// infoUser.user_birthday = resultSlashDate;
   return (
     <div className="information__user">
       <Col className="information__user__col">
@@ -109,11 +111,11 @@ function InfoAccounting(props) {
                 pattern="^(0?[1-9]|[12][0-9]|3[01])[/](0?[1-9]|1[012])[/]\d{4}$"
                 required
                 placeholder="dd/mm/yyyy   VD:01/01/2022"
-                value={infoUser.user_birthday}
+                value={resultSlashDate ? resultSlashDate : infoUser.user_birthday}
                 maxLength="10"
                 onChange={(e) => {
                   onChangeInfoUser(e);
-                  e.target.value = autoAddSlashDate(e.target.value);
+                  autoAddSlashDate(e.target.value);
                 }}
               />
             </Col>
@@ -164,4 +166,4 @@ function InfoAccounting(props) {
   );
 }
 
-export default InfoAccounting;
+export default memo(InfoAccounting);

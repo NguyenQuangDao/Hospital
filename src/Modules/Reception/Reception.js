@@ -8,19 +8,9 @@ import Clock from "../../Shared/Components/clock/index.jsx";
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "reactstrap";
-// import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
 import { faL } from "@fortawesome/free-solid-svg-icons";
-function Reception() {
-  
-  useEffect(() => {
-    Axios.get("http://localhost:4000/api/recep")
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch(function (error) {});
-  }, []); 
+function Reception() { 
   const [infoUser, setInfoUser] = useState({
     user_id: "",
     user_name: "",
@@ -54,9 +44,7 @@ function Reception() {
   };
 
   const toggle = (e) => {
-
     let {
-      user_id,
       user_name,
       user_birthday,
       user_sex,
@@ -127,13 +115,16 @@ function Reception() {
     setSearch(value);
     setOpen(true);
   };
-  Axios.get('http://localhost:4000/api/recep')
+  useEffect(()=>{
+    Axios.get('http://localhost:4000/api/recep')
     .then((response) => {
       setListInfoUser(response.data)
       
-    }, [])
+    })
     .catch(function (error) { });
-   
+  },[])
+ 
+  //  search
   useEffect(() => {
     setResListInfoUser(
       listInfoUser.filter((item) => item.user_id.includes(search))
@@ -142,6 +133,7 @@ function Reception() {
   
   const [isChecked, setIsChecked] = useState(false)
   const handleUpdate=(id)=>{
+    console.log(id)
     setInfoUser({...infoUser, user_id : id})
     Axios.post(`http://localhost:4000/api/recep/${infoUser.user_id}`, infoUser)
     .then(res=>{
@@ -203,6 +195,7 @@ function Reception() {
           <InfoAccounting
             onChangeInfoUser={onChangeInfoUser}
             infoUser={infoUser}
+            setInfoUser={setInfoUser}
           />
         </Col>
         <Col md={6}>

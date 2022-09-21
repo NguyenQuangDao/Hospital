@@ -79,6 +79,7 @@ function ContactInformation(props) {
                     type="select"
                     className="countrySelect"
                     id="province"
+                    value={infoUser.user_city}
                     onChange={(e) => {
                       setCodeDistrict(e.target.value);
                       const city = document.getElementById("province");
